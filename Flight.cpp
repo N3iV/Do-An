@@ -189,7 +189,7 @@ void Flight::InputFile(ifstream &input)
 	getline(input, _noiDi);
 	getline(input, _ISFC);
 	input >> _price;
-	input >> _ngayKhoiHanh;
+	// input >> _ngayKhoiHanh;
 	// input.clear();
 }
 void Flight::OutputFile(ofstream &out)
