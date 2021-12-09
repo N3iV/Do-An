@@ -1,4 +1,5 @@
 #pragma once
+#include "Display.h"
 #include "AirportSystem.h"
 #ifndef _PLANES_
 #define _PLANES_
@@ -39,7 +40,7 @@ public:
 
 	void InputFile(ifstream &input);
 	void OutputFile(ofstream &path);
-
+	string GetKey();
 	Plane &operator=(const Plane &r);
 	friend ostream &operator<<(ostream &os, const Plane &users);
 	friend bool operator==(const Plane &r1, const Plane &r2);

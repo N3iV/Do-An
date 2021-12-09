@@ -18,7 +18,10 @@ BuyTicket::BuyTicket(const string &UserCode, const string &Name, const string &I
 BuyTicket::~BuyTicket()
 {
 }
-
+string BuyTicket::GetKey()
+{
+	return _UserCode;
+}
 string BuyTicket::GetName() const
 {
 	return _Name;
@@ -30,6 +33,10 @@ string BuyTicket::GetID() const
 string BuyTicket::GetUserCode() const
 {
 	return _UserCode;
+}
+string BuyTicket::GetMaCB() const
+{
+	return _MaChuyenBay;
 }
 void BuyTicket::SetDate(Date day)
 {
@@ -50,6 +57,11 @@ void BuyTicket::SetUserCode(const string &UserCode)
 {
 	if (CheckUserCode(UserCode))
 		_UserCode = UserCode;
+}
+void BuyTicket::SetMaCB(const string &ma)
+{
+	if (!IsEmpty(ma))
+		_MaChuyenBay = ma;
 }
 
 bool BuyTicket::CheckID(const string &ID)
@@ -101,7 +113,14 @@ void BuyTicket::Input()
 	// 		break;
 	// 	cout << "\nVui long nhap ngay hop le va lon hon hoac bang ngay hien tai!!";
 	// }
-
+	Airport ap;
+	int found = ap.Search(0, 0);
+	if (found == NOT_FOUND)
+	{
+		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
+		return;
+	}
+	_MaChuyenBay = ap.GetFlight(found)->GetKey();
 	while (1)
 	{
 		cout << "\nNhap ten Khach hang: ";
@@ -133,7 +152,8 @@ void BuyTicket::Output()
 		 << "\tCMND: "
 		 << setw(10) << _ID
 		 << "\tMa khach hang: "
-		 << setw(10) << _UserCode;
+		 << setw(10) << _UserCode
+		 << "\tMa Chuyen bay: " << setw(10) << _MaChuyenBay;
 	//  << "\tNgay mua ve: "
 	//  << setw(10) << date;
 }
@@ -141,12 +161,14 @@ void BuyTicket::Output()
 void BuyTicket::InputFile(ifstream &input)
 {
 	// input >> date;
+	getline(input, _MaChuyenBay);
 	getline(input, _Name);
 	getline(input, _ID);
 	getline(input, _UserCode);
 }
 void BuyTicket::OutputFile(ofstream &out)
 {
+	out << _MaChuyenBay << endl;
 	out << _Name << endl;
 	out << _ID << endl;
 	out << _UserCode << endl;
@@ -166,6 +188,7 @@ ostream &operator<<(ostream &os, const BuyTicket &BuyTicket)
 	os << BuyTicket._Name << endl;
 	os << BuyTicket._ID << endl;
 	os << BuyTicket._UserCode << endl;
+	os << BuyTicket._MaChuyenBay << endl;
 	// os << BuyTicket.date << endl;
 	return os;
 }

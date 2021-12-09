@@ -1,5 +1,6 @@
 #include "Flight.h"
 #include <iomanip>
+#include "Airport.h"
 Flight::Flight()
 {
 	_maChuyenBay = "";
@@ -28,7 +29,10 @@ Flight::Flight(const string &maChuyenBay, const string &noiDen, const string &no
 Flight::~Flight()
 {
 }
-
+string Flight::GetKey()
+{
+	return _maChuyenBay;
+}
 string Flight::GetNoiDen() const
 {
 	return _noiDen;
@@ -46,6 +50,10 @@ string Flight::GetMaChuyenBay() const
 {
 	return _maChuyenBay;
 }
+string Flight::GetMaHieu() const
+{
+	return _maHieu;
+}
 double Flight::GetPrice() const
 {
 	return _price;
@@ -55,6 +63,11 @@ void Flight::SetMaChuyenBay(const string &maChuyenBay)
 {
 	if (!IsEmpty(maChuyenBay))
 		_maChuyenBay = maChuyenBay;
+}
+void Flight::SetMaHieu(const string &maHieu)
+{
+	if (!IsEmpty(maHieu))
+		_maHieu = maHieu;
 }
 void Flight::SetNoiDen(const string &noiDen)
 {
@@ -115,6 +128,15 @@ string Flight::FormatISFC() const
 void Flight::Input()
 {
 
+	Airport ap;
+	int found = ap.Search(1, 1);
+	if (found == NOT_FOUND)
+	{
+		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
+		return;
+	}
+	_maHieu = ap.GetPlane(found)->GetKey();
+
 	while (1)
 	{
 		cout << "\nNhap ma chuyen bay: ";
@@ -170,20 +192,23 @@ void Flight::Input()
 }
 void Flight::Output()
 {
+	// NAM
+	TextColor(SHOW_COLOR);
+	cout << setiosflags(ios::left) << "|     " << setw(6) << left << _maHieu
+		 << "|" << setw(18) << _maChuyenBay
+		 << "|     "
+		 << setw(12) << _noiDen
+		 << "|     "
+		 << setw(11) << _noiDi
 
-	cout << setiosflags(ios::left) << "Ma Chuyen Bay: " << setw(6) << _maChuyenBay
-		 << "\tNoi den: "
-		 << setw(10) << _noiDen
-		 << "\tNoi di: "
-		 << setw(10) << _noiDi
-		 << "\tNgay : " << setw(10) << _ngayKhoiHanh
-		 << "\tISFC: "
-		 << setw(10) << FormatISFC()
-		 << "\tGia ve: " << _price << "$";
+		 << "|  "
+		 << setw(12) << FormatISFC()
+		 << "|     " << _price << "$";
 }
 
 void Flight::InputFile(ifstream &input)
 {
+	getline(input, _maHieu);
 	getline(input, _maChuyenBay);
 	getline(input, _noiDen);
 	getline(input, _noiDi);
@@ -194,12 +219,13 @@ void Flight::InputFile(ifstream &input)
 }
 void Flight::OutputFile(ofstream &out)
 {
+	out << _maHieu << endl;
 	out << _maChuyenBay << endl;
 	out << _noiDen << endl;
 	out << _noiDi << endl;
 	out << _ISFC << endl;
 	out << _price << endl;
-	out << _ngayKhoiHanh;
+	// out << _ngayKhoiHanh;
 	out.clear();
 }
 
@@ -220,6 +246,6 @@ ostream &operator<<(ostream &os, const Flight &Flight)
 	os << Flight._noiDi << endl;
 	os << Flight._ISFC << endl;
 	os << Flight._price << endl;
-	os << Flight._ngayKhoiHanh << endl;
+	// os << Flight._ngayKhoiHanh << endl;
 	return os;
 }

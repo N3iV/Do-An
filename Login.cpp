@@ -42,8 +42,8 @@ bool Login::dangNhap()
 {
     bool isLogin;
     system("cls");
-    // Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
-    // cout << figlet("Dang nhap");
+    Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
+    cout << figlet("Dang nhap");
     cout << "Nhap tai khoan va mat khau.\nTai Khoan:";
     cin >> taiKhoanTmp;
     int userID = checkFile(taiKhoanTmp, USER_DATA_PATH);
@@ -124,9 +124,9 @@ void Login::saveFile(string p_line, const char *p_fileName) // giam bo nho
 void Login::dangKi()
 {
     string tk, mk;
-    // Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
-    // system("cls");
-    // cout << figlet("Dang ky");
+    Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
+    system("cls");
+    cout << figlet("Dang ky");
 
     cout << "Vui long nhap ten tai khoan:\t";
     cin >> tk;

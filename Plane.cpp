@@ -27,7 +27,10 @@ Plane::Plane(string maHieu, string loaiMB, string Code, int soDay, int soGhe)
 Plane::~Plane()
 {
 }
-
+string Plane::GetKey()
+{
+	return _maHieu;
+}
 void Plane::PrintSeats()
 {
 	int soDay = GetSoDay();
@@ -166,16 +169,17 @@ void Plane::Input()
 }
 void Plane::Output()
 {
-	cout << setiosflags(ios::left) << "\nMa hieu: " << setw(6) << _maHieu
-		 << "\tLoai: "
-		 << setw(15) << _loaiMB
-		 << "\tCode: "
-		 << setw(7) << _code
-		 << "\tSo day: "
-		 << setw(4) << _soDay
-		 << "\tSo Ghe: "
-		 << setw(4) << _soGhe
-		 << "\tSo ve:"
+	TextColor(SHOW_COLOR);
+	cout << "  |     " << setw(12) << left << _maHieu
+		 << "|   "
+		 << setw(11) << _loaiMB
+		 << "|     "
+		 << setw(9) << _code
+		 << "|     "
+		 << setw(11) << _soDay
+		 << "|     "
+		 << setw(11) << _soGhe
+		 << "|     "
 		 << GetVe();
 }
 

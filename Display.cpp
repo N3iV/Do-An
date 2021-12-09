@@ -60,16 +60,16 @@ void Display::ShowOptionMenu()
 {
 	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	cout << "\n======== Hien thi thong tin ========";
+	cout << setw(52) << right << "============= HIEN THI THONG TIN ============="; // NAM
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
 	cout << "    Chuyen bay bay    ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 2 * STEP_Y);
-	cout << "   May bay  ";
+	cout << "        May bay       ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 3 * STEP_Y);
-	cout << " Ve ";
+	cout << "          Ve          ";
 
 	gotoxy(PIVOT_X - 13, TITLE_Y + 4 * STEP_Y);
 	TextColor(4);
@@ -122,9 +122,20 @@ void Display::ControlShowOption()
 				system("cls");
 				TextColor(9);
 				if (option == 0)
-					cout << "\n======= DANH SACH CHUYEN BAY =======";
+				{ // NAM
+					cout << "                           ========= DANH SACH CHUYEN BAY =========                          " << endl;
+					TextColor(SHOW_COLOR);
+					cout << "STT |   Ma hieu  |     Ma chuyen bay     |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
+					cout << "=======================================================================================================";
+				}
 				else if (option == 1)
-					cout << "\n======= DANH SACH MAY BAY  =======";
+				{ // NAM
+					cout << "                           ========== DANH SACH MAY BAY ==========                           " << endl;
+
+					TextColor(SHOW_COLOR);
+					cout << "STT |     Ma hieu     |     Loai     |     Code     |     So day     |     So ghe     |     So ve" << endl;
+					cout << "==================================================================================================" << endl;
+				}
 				else
 					cout << "\n======= DANH SACH VE MAY BAY =======";
 				Airport aport;
@@ -151,7 +162,7 @@ int ReduceUpdateCode(const char *functionName)
 	system("cls");
 	ShowConsoleCursor(true);
 	TextColor(UPDATE_COLOR);
-	cout << "========== " << functionName << " ==========" << endl;
+	cout << setw(17) << right << "========== " << functionName << " ==========" << endl;
 	TextColor(10);
 	cout << "0 - CHUYEN BAY, 1 - MAY BAY, 2 - VE >> ";
 	TextColor(7);
@@ -167,7 +178,7 @@ void Display::UpdateOptionMenu()
 {
 	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	cout << "======== CAP NHAP ========";
+	cout << setw(41) << "============= CAP NHAT ============="; // NAM
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
@@ -273,17 +284,17 @@ void Display::SearchOptionMenu()
 {
 	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	cout << "======== TIM KIEM ========";
+	cout << setw(47) << right << "============= TIM KIEM ============="; // NAM
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
 	cout << "      Chuyen bay      ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 2 * STEP_Y);
-	cout << "     May bay   ";
+	cout << "       May bay        ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 3 * STEP_Y);
-	cout << " Ve ";
+	cout << "         Ve           ";
 
 	gotoxy(PIVOT_X - 13, TITLE_Y + 4 * STEP_Y);
 	TextColor(4);
@@ -339,7 +350,7 @@ void Display::ControlSearchOption()
 					system("cls");
 					ShowConsoleCursor(true);
 					TextColor(UPDATE_COLOR);
-					cout << "========== TIM KIEM CHUYEN BAY ==========" << endl;
+					cout << setw(43) << "========== TIM KIEM CHUYEN BAY ==========" << endl; // NAM
 					TextColor(10);
 					cout << "Tim kiem bang (0 - Ma chuyen bay, 1 - ISFC) >> ";
 					TextColor(7);
@@ -352,8 +363,10 @@ void Display::ControlSearchOption()
 					int found = aport.Search(option, type);
 					if (found != NOT_FOUND)
 					{
-						TextColor(13);
-						cout << "\n========== TIM THAY ==========" << endl;
+						TextColor(SHOW_COLOR);
+						cout << setw(61) << right << "========== TIM THAY ==========" << endl;
+						cout << "  |     Ma chuyen bay     |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
+						cout << "==============================================================================================" << endl;
 						aport.GetFlight(found)->Output();
 					}
 					else
@@ -368,7 +381,7 @@ void Display::ControlSearchOption()
 					system("cls");
 					ShowConsoleCursor(true);
 					TextColor(UPDATE_COLOR);
-					cout << "========== TIM KIEM MAY BAY ==========" << endl;
+					cout << setw(44) << right << "========== TIM KIEM MAY BAY ==========" << endl;
 					TextColor(10);
 					cout << "Tim kiem bang (0 - Loai may bay, 1 - Ma hieu) >> ";
 					TextColor(7);
@@ -381,8 +394,10 @@ void Display::ControlSearchOption()
 					int found = aport.Search(option, type);
 					if (found != NOT_FOUND)
 					{
-						TextColor(13);
-						cout << "\n========== TIM THAY ==========";
+						TextColor(SHOW_COLOR);
+						cout << setw(60) << right << "========== TIM THAY ==========" << endl;
+						cout << "  |     Ma hieu     |     Loai     |     Code     |     So day     |     So ghe     |     So ve" << endl;
+						cout << "===============================================================================================" << endl;
 						aport.GetPlane(found)->Output();
 					}
 					else
@@ -404,7 +419,7 @@ void Display::ControlSearchOption()
 					if (found != NOT_FOUND)
 					{
 						TextColor(13);
-						cout << "\n========== TIM THAY ==========";
+						cout << "\n========== TIM THAY ==========" << endl;
 						aport.GetTicket(found)->Output();
 					}
 					else
@@ -483,9 +498,10 @@ void Display::ControlBuyTicketOption()
 // ======== MAIN DISPLAY ======== //
 void Display::MainMenu()
 {
+
 	gotoxy(PIVOT_X, TITLE_Y - 10);
 	TextColor(TITLE_COLOR);
-	// cout << figlet("San bay H-V-N");
+	cout << setw(45) << right << "===== HE THONG QUAN LY SAN BAY =====";
 
 	gotoxy(PIVOT_X, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
@@ -497,8 +513,9 @@ void Display::MainMenu()
 	gotoxy(PIVOT_X, TITLE_Y + 3 * STEP_Y);
 	cout << "  Tim Kiem  ";
 
+	gotoxy(PIVOT_X - 6, TITLE_Y + 5 * STEP_Y);
 	TextColor(4);
-	cout << "\n<== Nhan ESC de thoat ==>";
+	cout << "<== Nhan ESC de thoat ==>";
 }
 void Display::DisplayMain()
 {
@@ -533,7 +550,7 @@ void Display::DisplayMain()
 			case 'S':
 			case 80:
 			{
-				if (move < MAX_OPTION - 1)
+				if (move < MAX_OPTION - 3)
 				{
 					pre_move = move;
 					++move;
@@ -563,18 +580,18 @@ void Display::DisplayMain()
 					DisplayMain();
 					return;
 				}
-				case 3:
-				{
-					ControlBuyTicketOption();
-					DisplayMain();
-					return;
-				}
-				case 4:
-				{
-					// ControlCancelTicketOption();
-					DisplayMain();
-					return;
-				}
+				// case 3:
+				// {
+				// 	ControlBuyTicketOption();
+				// 	DisplayMain();
+				// 	return;
+				// }
+				// case 4:
+				// {
+				// 	// ControlCancelTicketOption();
+				// 	DisplayMain();
+				// 	return;
+				// }
 				break;
 				}
 			case 27:
@@ -593,6 +610,10 @@ void Display::ShowLogin()
 	// TextColor(TITLE_COLOR);
 	// gotoxy(0, 0);
 	// cout << figlet("Chao ban!");
+	Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
+	TextColor(TITLE_COLOR);
+	cout << figlet(" San bay HVN ");
+
 	TextColor(OPTION_COLOR);
 	gotoxy(PIVOT_X, TITLE_Y + 2 * STEP_Y);
 	cout << "  dang ky   ";

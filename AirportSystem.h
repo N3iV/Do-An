@@ -30,6 +30,7 @@ class AirportSystem
 protected:
 public:
 	AirportSystem(){};
+	virtual string GetKey() = 0;
 	virtual void Input() = 0;
 	virtual void Output() = 0;
 	virtual void InputFile(ifstream &input) = 0;

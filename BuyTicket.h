@@ -7,7 +7,7 @@
 class BuyTicket : public AirportSystem
 {
 private:
-	vector<AirportSystem *> _as;
+	string _MaChuyenBay;
 	string _Name;
 	string _UserCode;
 	string _ID;
@@ -21,7 +21,7 @@ public:
 	string GetName() const;
 	string GetUserCode() const;
 	string GetID() const;
-
+	string GetKey();
 	void SetMaCB(const string &);
 	void SetName(const string &);
 	void SetUserCode(const string &);
