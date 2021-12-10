@@ -64,6 +64,12 @@ bool Airport::IsExist(int option, AirportSystem *as) const
 			if (((Plane *)as)->GetCodeMB() == ((Plane *)_pl[i])->GetCodeMB())
 				return true;
 	}
+	case 2:
+	{
+		for (int i = 0; i < _pl.size(); ++i)
+			if (((Plane *)as)->GetMaHieu() == ((Plane *)_pl[i])->GetMaHieu())
+				return true;
+	}
 	default:
 	{
 		break;
@@ -249,7 +255,7 @@ void Airport::Add(int option)
 
 		fflush(stdin);
 		planes->Input();
-		if (!IsExist(option, planes))
+		if (!IsExist(option, planes) && !IsExist(option + 1, planes))
 			planes->OutputFile(output);
 		else
 			cout << "\nMay bay da da ton tai  !";
@@ -312,7 +318,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 	}
 	break;
@@ -337,7 +343,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 	}
 	break;
@@ -362,7 +368,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 		break;
 	}
@@ -400,10 +406,10 @@ int Airport::Search(int option, int type)
 			string ISFC;
 			fflush(stdin);
 			while (1)
-			{//N
-				vekhung(0,2,1,28);
-				gotoxy(2,3);
-				cout << "Nhap ma ISFC-9: "<<setfill(' ');
+			{ // N
+				vekhung(0, 2, 1, 28);
+				gotoxy(2, 3);
+				cout << "Nhap ma ISFC-9: " << setfill(' ');
 				getline(cin, ISFC);
 				if (Flight::CheckFC(ISFC))
 					break;
@@ -482,7 +488,7 @@ void Airport::Edit(int option)
 		TextColor(SHOW_COLOR);
 		cout << setw(61) << right << "========== TIM THAY ==========" << endl;
 		cout << "  |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-		cout << "======================================================================================================="<< endl;
+		cout << "=======================================================================================================" << endl;
 		_fl[found]->Output();
 		TextColor(3);
 		cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
@@ -602,34 +608,6 @@ void Airport::Edit(int option)
 					break;
 			}
 			((Plane *)_pl[found])->SetCodeMB(Code);
-			break;
-		}
-		case 4:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			int age = 0;
-			while (1)
-			{
-				cout << "Nhap so day: ";
-				cin >> age;
-				if (age > 0)
-					break;
-			}
-			((Plane *)_pl[found])->SetSoDay(age);
-			break;
-		}
-		default:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			int age = 0;
-			while (1)
-			{
-				cout << "Nhap so ghe: ";
-				cin >> age;
-				if (age > 0)
-					break;
-			}
-			((Plane *)_pl[found])->SetSoGhe(age);
 			break;
 		}
 		}
