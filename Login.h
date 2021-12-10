@@ -5,7 +5,7 @@ class Login
 {
 public:
     Login();
-    void dangNhap();
+    bool dangNhap();
     void dangKi();
     void inputPass(string &);
     bool checkFile(string, const char *);

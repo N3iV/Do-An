@@ -18,7 +18,7 @@ public:
 	BuyTicket();
 	BuyTicket(const string &, const string &, const string &);
 	~BuyTicket();
-	string GetGioiTinh() const;
+	string GetGioiTinh() const ;
 	string GetMaISFC() const;
 	string GetName() const;
 	string GetUserCode() const;
@@ -35,7 +35,6 @@ public:
 
 	void Input();
 	void Output();
-	void OutputMainInfo();
 	string FormatUserCode() const;
 
 	void InputFile(ifstream &input);

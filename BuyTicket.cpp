@@ -120,14 +120,12 @@ void BuyTicket::Input()
 	// 	cout << "\nVui long nhap ngay hop le va lon hon hoac bang ngay hien tai!!";
 	// }
 	Airport ap;
-	ap.ShowMainInfo(0);
 	int found = ap.Search(0, 1);
 	if (found == NOT_FOUND)
 	{
 		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 		return;
 	}
-
 	_MaISFC = ap.GetFlight(found)->GetKey();
 	while (1)
 	{
@@ -161,22 +159,14 @@ void BuyTicket::Input()
 void BuyTicket::Output()
 {
 
-	TextColor(SHOW_COLOR);
+
+		TextColor(SHOW_COLOR);
 	cout << "  |   " << setw(16) << left << _MaISFC
 		 << "|   " << setw(17) << _Ten
-		 << "|      " << setw(9) << _GioiTinh
-		 << "|     " << setw(9) << _ID
-		 << "|     " << _MaKhachHang;
-}
-void BuyTicket::OutputMainInfo()
-{
-
-	TextColor(SHOW_COLOR);
-	cout
-		<< "|   " << setw(17) << _Ten
-		<< "|      " << setw(9) << _GioiTinh
-
-		;
+		 << "|      " <<setw(9)<<_GioiTinh
+		 << "|     "<< setw(9) << _ID
+		 << "|     "<<_MaKhachHang
+		 ;
 }
 
 void BuyTicket::InputFile(ifstream &input)

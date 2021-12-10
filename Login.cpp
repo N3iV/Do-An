@@ -3,23 +3,12 @@
 #include <string>
 #include <math.h>
 #include "Login.h"
-#include "AirportSystem.h"
 #include "Display.h"
 #include "srilakshmikanthanp/Figlet.hpp"
 
 using namespace srilakshmikanthanp;
 using namespace std;
-#include <regex>
-bool isValid(const string &email)
-{
 
-    const regex pattern(
-        "(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-
-    return regex_match(email, pattern);
-}
-
-//?-------------------VALIDATE EMAIL --------------------?//
 Login::Login()
 {
     quyenTruyCap = 0;
@@ -32,7 +21,7 @@ void Login::inputPass(string &tmp)
     {
         c = _getch();
 
-        if ((c == 13 || c == ' ') && !tmp.empty())
+        if ((c == 13 || c == ' ')&& !tmp.empty())
         {
             break;
         }
@@ -49,14 +38,14 @@ void Login::inputPass(string &tmp)
 
     } while (c != 13 || c != ' ');
 }
-void Login::dangNhap()
+bool Login::dangNhap()
 {
+    bool isLogin;
     system("cls");
     Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
     cout << figlet("Dang nhap");
-    cout << "Nhap tai khoan va mat khau.\nEmail:";
+    cout << "Nhap tai khoan va mat khau.\nTai Khoan:";
     cin >> taiKhoanTmp;
-
     int userID = checkFile(taiKhoanTmp, USER_DATA_PATH);
     if (userID != 0)
     {
@@ -67,14 +56,10 @@ void Login::dangNhap()
         int passwordID = checkFile(matKhauTmp, PASSWORD_DATA_PATH);
         if (userID == passwordID)
         {
-            quyenTruyCap = 1;
-            if (quyenTruyCap)
-            {
-                Display display;
-                display.DisplayMain();
-
-                cin.get();
-            }
+            isLogin = true;
+            Display display;
+            display.DisplayMain();
+            cin.get();
         }
         else
         {
@@ -87,6 +72,7 @@ void Login::dangNhap()
         cout << "Ten dang nhap khong dung." << endl;
         dangNhap();
     }
+    return isLogin;
 }
 bool Login::checkFile(string attempt, const char *p_fileName)
 {
@@ -142,25 +128,11 @@ void Login::dangKi()
     system("cls");
     cout << figlet("Dang ky");
 
-    while (1)
-    {
+    cout << "Vui long nhap ten tai khoan:\t";
+    cin >> tk;
 
-        cout << "Vui long nhap email:\t";
-        cin >> tk;
-        bool checkValidEmail = isValid(tk);
-        if (!checkValidEmail)
-        {
-            cout << "\nEmail khong dung dinh dang!\n";
-            cout << "\nVi du: xxx@gmail.com";
-            system("pause");
-            return;
-        }
-
-        cout << "Vui long nhap mat khau:\t";
-        cin >> mk;
-        if (!IsEmpty(mk))
-            break;
-    }
+    cout << "Vui long nhap mat khau:\t";
+    cin >> mk;
     saveFile(tk, USER_DATA_PATH);
     saveFile(mk, PASSWORD_DATA_PATH);
     dangNhap();

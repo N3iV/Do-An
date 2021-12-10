@@ -31,13 +31,8 @@ protected:
 public:
 	AirportSystem(){};
 	virtual string GetKey() = 0;
-	//*------------------*//
-
 	virtual void Input() = 0;
 	virtual void Output() = 0;
-	virtual void OutputMainInfo() = 0;
-	//*------------------*//
-
 	virtual void InputFile(ifstream &input) = 0;
 	virtual void OutputFile(ofstream &path) = 0;
 	~AirportSystem(){};

@@ -129,7 +129,6 @@ void Flight::Input()
 {
 
 	Airport ap;
-	ap.ShowMainInfo(1);
 	int found = ap.Search(1, 1);
 	if (found == NOT_FOUND)
 	{
@@ -205,17 +204,6 @@ void Flight::Output()
 		 << "|  "
 		 << setw(12) << FormatISFC()
 		 << "|     " << _price << "$";
-}
-void Flight::OutputMainInfo()
-{
-
-	cout << "|        " << left << setw(11) << _maChuyenBay
-		 << "|     "
-		 << setw(12) << _noiDen
-		 << "|     "
-		 << setw(11) << _noiDi
-		 << "|     " << _price << "$";
-	TextColor(7);
 }
 
 void Flight::InputFile(ifstream &input)
