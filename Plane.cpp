@@ -182,7 +182,15 @@ void Plane::Output()
 		 << "|     "
 		 << GetVe();
 }
+void Plane::OutputMainInfo()
+{
 
+	cout << "                           |     " << setw(12) << left << _maHieu
+		 << "|   "
+		 << setw(11) << _loaiMB
+		 << "|     ";
+	TextColor(7);
+}
 void Plane::InputFile(ifstream &input)
 {
 	getline(input, _maHieu);

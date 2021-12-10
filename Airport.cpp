@@ -197,6 +197,26 @@ void Airport::Show(int option)
 		tmp[i]->Output();
 	}
 }
+void Airport::ShowMainInfo(int option)
+{
+	LoadDataFromFile(option);
+	vector<AirportSystem *> tmp;
+
+	if (option == 0)
+		tmp = _fl;
+	else if (option == 1)
+		tmp = _pl;
+	else
+		tmp = _bt;
+	for (int i = 0; i < tmp.size(); ++i)
+	{
+		TextColor(SHOW_COLOR);
+		cout << "\n";
+		TextColor(7);
+
+		tmp[i]->OutputMainInfo();
+	}
+}
 
 void Airport::Add(int option)
 {
@@ -206,35 +226,23 @@ void Airport::Add(int option)
 	{
 	case 0:
 	{
-		try
+
+		output.open(FLIGHT_DATA_PATH, ios::app);
+		if (output.fail())
+			throw "Loi doc file";
+		AirportSystem *flight = new Flight;
+		if (flight == NULL)
+			throw "Khong the cap phat bo nho";
+
+		flight->Input();
+		if (!IsExist(option, flight))
 		{
 
-			output.open(FLIGHT_DATA_PATH, ios::app);
-			if (output.fail())
-				throw "Loi doc file";
-			AirportSystem *flight = new Flight;
-			if (flight == NULL)
-				throw "Khong the cap phat bo nho";
-			// int found = Search(1, 1);
-			// if (found == NOT_FOUND)
-			// {
-			// 	cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
-			// 	return;
-			// }
-			flight->Input();
-			if (!IsExist(option, flight))
-			{
-
-				flight->OutputFile(output);
-				output.close();
-			}
-			else
-				cout << "\n bay da ton tai trong database !";
+			flight->OutputFile(output);
+			output.close();
 		}
-		catch (...)
-		{
-			cerr << "Loi doc file";
-		}
+		else
+			cout << "\n bay da ton tai trong database !";
 
 		break;
 	}
@@ -267,10 +275,10 @@ void Airport::Add(int option)
 		fflush(stdin);
 
 		bt->Input();
-		for (int i = 0; i < _pl.size(); ++i)
-			if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_pl[i])->GetUserCode())
+		for (int i = 0; i < _bt.size(); ++i)
+			if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_bt[i])->GetUserCode())
 			{
-				if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_pl[i])->GetUserCode())
+				if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_bt[i])->GetUserCode())
 					bt->OutputFile(output);
 				else
 					cerr << "\n=== ERROR: Trung ID nhung khac thong tin ===" << endl;
@@ -312,6 +320,8 @@ void Airport::Delete(int option)
 				cout << "\n========= XOA THANH CONG ==========" << endl;
 				break;
 			}
+			else
+				return;
 		}
 	}
 	break;
@@ -335,6 +345,8 @@ void Airport::Delete(int option)
 				cout << "\n========= XOA THANH CONG ==========" << endl;
 				break;
 			}
+			else
+				return;
 		}
 	}
 	break;
@@ -358,6 +370,8 @@ void Airport::Delete(int option)
 				cout << "\n========= XOA THANH CONG ==========" << endl;
 				break;
 			}
+			else
+				return;
 		}
 		break;
 	}
@@ -474,8 +488,8 @@ void Airport::Edit(int option)
 	{
 		TextColor(SHOW_COLOR);
 		cout << setw(61) << right << "========== TIM THAY ==========" << endl;
-		cout << "  |     Ma chuyen bay     |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-		cout << "==============================================================================================" << endl;
+		cout << "  |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
+		cout << "=======================================================================================================" << endl;
 		_fl[found]->Output();
 		TextColor(3);
 		cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
@@ -628,49 +642,8 @@ void Airport::Edit(int option)
 		}
 		break;
 	}
-		// default:
-		// {
-		// 	TextColor(3);
-		// 	cout << "\n0-Sua Tat Ca, 1-Nguoi Muon, 2-Ngay Muon >> ";
-		// 	cin >> type;
-		// 	if (cin.fail())
-		// 		throw "Du lieu nhap khong la so";
-		// 	cin.ignore();
-		// 	TextColor(11);
-		// 	switch (type)
-		// 	{
-		// 	case 0:
-		// 	{
-		// 		cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-		// 		_pl[found]->Input();
-		// 		break;
-		// 	}
-		// 	case 1:
-		// 	{
-		// 		cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-		// 		Plane r;
-		// 		r.Input();
-		// 		((BuyTicket *)_pl[found])->SetPlane(r);
-		// 		break;
-		// 	}
-		// 	default:
-		// 	{
-		// 		cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-		// 		Date date;
-		// 		while (1)
-		// 		{
-		// 			cout << "Nhap ngay muon: ";
-		// 			cin >> date;
-		// 			if (date.validityCheck_Fix())
-		// 				break;
-		// 			cerr << "\nNgay nhap khong hop le !" << endl;
-		// 		}
-		// 		((BuyTicket *)_pl[found])->SetBorrowDate(date);
-		// 		break;
-		// 	}
-		// 	}
-		// 	break;
-		// }
+	default:
+		break;
 	}
 	OutputDataToFile(option);
 }
@@ -678,231 +651,4 @@ void Airport::Edit(int option)
 // void Airport::BuyTickets()
 // {
 // 	this->Add(2);
-// }
-
-// void Airport::CancelTickets()
-// {
-// 	LoadDataFromFile(3);
-
-// 	//Tim nguoi can tra
-// 	string code;
-// 	while (1)
-// 	{
-// 		cout << "\nNhap code may bay: ";
-// 		getline(cin, code);
-// 		if (code.length() != 9 && Plane::CheckCode(code))
-// 			break;
-// 	}
-// 	vector<int> founds;
-// 	for (int i = 0; i < _pl.size(); ++i)
-// 		if (((BuyTicket *)_pl[i])->GetPlane().GetCodeMB() == code)
-// 			founds.push_back(i);
-// 	if (founds.size() == 0)
-// 	{
-// 		cerr << "\n========== KHONG TIM MAY BAY CO CODE TREN =========" << endl;
-// 		return;
-// 	}
-
-// 	//Lua chon tinh nang tra
-// 	cout << "\n0 - Huy het, 1 - Tra Tung Quyen: ";
-// 	int option = 0;
-// 	cin >> option;
-// 	if (cin.fail())
-// 		throw "NaN - Du lieu nhap khong la so";
-
-// 	if (!option)
-// 	{
-// 		Date date;
-// 		while (1)
-// 		{
-// 			cout << "\nNhap ngay tra: ";
-// 			cin >> date;
-// 			bool check = true;
-// 			if (date.validityCheck_Fix() == true)
-// 			{
-// 				for (int i = 0; i < founds.size(); ++i)
-// 				{
-// 					if (((BuyTicket *)_pl[founds[i]])->GetBorrowDate() > date)
-// 					{
-// 						cerr << "\nNgay nhap khong hop le (Ngay tra >= ngay muon) !";
-// 						check = false;
-// 						break;
-// 					}
-// 				}
-// 			}
-// 			else
-// 			{
-// 				cerr << "\nNgay nhap khong hop le !";
-// 				check = false;
-// 			}
-// 			if (check)
-// 				break;
-// 		}
-// 		for (int i = 0; i < founds.size(); ++i)
-// 		{
-// 			int n = ((BuyTicket *)_pl[founds[i]])->GetFlightList().size();
-// 			for (int j = 0; j < n; ++j)
-// 			{
-// 				if (((BuyTicket *)_pl[founds[i]])->GetReturned(j) == 0)
-// 				{
-// 					((BuyTicket *)_pl[founds[i]])->SetReturned(j, 1);
-// 					((BuyTicket *)_pl[founds[i]])->SetFlightReturnDate(j, date);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	else
-// 	{
-// 		fflush(stdin);
-// 		string FlightName;
-// 		cout << "\nNhap ten sach can tra: ";
-// 		getline(cin, FlightName);
-
-// 		vector<vector<Flight>> FlightList;
-// 		for (int i = 0; i < founds.size(); ++i)
-// 			FlightList.push_back(((BuyTicket *)_pl[founds[i]])->GetFlightList());
-// 		int pos_1 = -1;
-// 		int pos_2 = -1;
-// 		for (int i = 0; i < founds.size(); ++i)
-// 		{
-// 			for (int j = 0; j < FlightList[i].size(); ++j)
-// 			{
-// 				if (ToLower(FlightList[i][j].GetMaChuyenBay()) == ToLower(FlightName))
-// 				{
-// 					pos_1 = i;
-// 					pos_2 = j;
-// 					break;
-// 				}
-// 			}
-// 		}
-// 		if (pos_1 == -1 && pos_2 == -1)
-// 		{
-// 			cerr << "\n========== KHONG TIM THAY SACH CAN TRA =========" << endl;
-// 			return;
-// 		}
-// 		Date date;
-// 		while (1)
-// 		{
-// 			cout << "\nNhap ngay tra: ";
-// 			cin >> date;
-// 			if (date.validityCheck_Fix() == true && date >= ((BuyTicket *)_pl[founds[pos_1]])->GetBorrowDate())
-// 				break;
-// 			cerr << "\nNgay nhap khong hop le (Ngay tra >= ngay muon) !";
-// 		}
-// 		((BuyTicket *)_pl[founds[pos_1]])->SetReturned(pos_2, 1);
-// 		((BuyTicket *)_pl[founds[pos_1]])->SetFlightReturnDate(pos_2, date);
-// 	}
-// 	cout << "\n========== TRA THANH CONG ==========" << endl;
-// 	//Luu lai file
-// 	OutputDataToFile(3);
-// }
-
-// void Airport::OverdueList()
-// {
-// 	LoadDataFromFile(3);
-// 	Date now;
-// 	while (1)
-// 	{
-// 		cout << "\nNhap ngay can thong ke: ";
-// 		cin >> now;
-// 		if (now.validityCheck_Fix())
-// 			break;
-// 		cerr << "\nNgay nhap khog hop le !";
-// 	}
-// 	vector<Plane> overduePlane;
-// 	vector<int> money;
-
-// 	//liet ke nhung doc gia muon sach qua han
-// 	for (int i = 0; i < _pl.size(); ++i)
-// 	{
-// 		int money_t = 0;
-// 		vector<int> returned = ((BuyTicket *)_pl[i])->GetReturned();
-// 		vector<Date> returnDate = ((BuyTicket *)_pl[i])->GetFlightReturnDate();
-// 		Date borrowDate = ((BuyTicket *)_pl[i])->GetBorrowDate();
-// 		vector<Flight> FlightList = ((BuyTicket *)_pl[i])->GetFlightList();
-// 		//ngay muon toi da
-// 		borrowDate += 7;
-// 		bool overdue = faase;
-
-// 		for (int j = 0; j < returned.size(); ++j)
-// 		{
-// 			//sach da tra
-// 			int nOver = 0;
-// 			if (returned[j] != 0)
-// 			{
-// 				if (borrowDate < returnDate[j])
-// 				{
-// 					overdue = true;
-// 					nOver = returnDate[j] - borrowDate;
-// 					if (Flight::IsVNFlight(FlightList[j].GetISFC()))
-// 						money_t += OVERDUE_MONEY_VN_BOOK * nOver;
-// 					else
-// 						money_t += OVERDUE_MONEY_FOREIGN_BOOK * nOver;
-// 				}
-// 			}
-// 			//sach chua tra
-// 			else
-// 			{
-// 				if (borrowDate < now)
-// 				{
-// 					overdue = true;
-// 					nOver = now - borrowDate;
-// 					if (Flight::IsVNFlight(FlightList[j].GetISFC()))
-// 						money_t += (OVERDUE_MONEY_VN_BOOK * nOver);
-// 					else
-// 						money_t += (OVERDUE_MONEY_FOREIGN_BOOK * nOver);
-// 				}
-// 			}
-// 		}
-// 		if (overdue == true)
-// 		{
-// 			overduePlane.push_back(((BuyTicket *)_pl[i])->GetPlane());
-// 			money.push_back(money_t);
-// 		}
-// 	}
-
-// 	if (overduePlane.size() == 0)
-// 	{
-// 		TextColor(3);
-// 		cout << "\n========== KHONG CO DOC GIA NAO MUON SACH QUA HAN ==========\n";
-// 		return;
-// 	}
-
-// 	//Merge doc gia bi trung
-// 	vector<Plane> RE_result;
-// 	vector<int> MO_result;
-// 	RE_result.push_back(overduePlane[0]);
-// 	MO_result.push_back(money[0]);
-
-// 	for (int i = 1; i < overduePlane.size(); ++i)
-// 	{
-// 		bool check = true;
-// 		for (int j = 0; j < RE_result.size(); ++j)
-// 		{
-// 			if (overduePlane[i].GetID() == RE_result[j].GetID())
-// 			{
-// 				MO_result[j] += money[i];
-// 				check = faase;
-// 				break;
-// 			}
-// 		}
-// 		if (check)
-// 		{
-// 			RE_result.push_back(overduePlane[i]);
-// 			MO_result.push_back(money[i]);
-// 		}
-// 	}
-
-// 	TextColor(6);
-// 	cout << "\n=============== DANH SACH MUON SACH QUA HAN ================" << endl;
-// 	TextColor(3);
-// 	cout << "====> Co " << RE_result.size() << " doc gia muon sach qua han" << endl;
-// 	for (int i = 0; i < RE_result.size(); ++i)
-// 	{
-// 		TextColor(10);
-// 		cout << "========= STT " << i + 1 << " =========" << endl;
-// 		TextColor(7);
-// 		RE_result[i].Output();
-// 		cout << "\n==> So tien phat: " << MO_result[i] << endl;
-// 	}
 // }

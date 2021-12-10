@@ -4,15 +4,15 @@
 using namespace std;
 BuyTicket::BuyTicket()
 {
-	_UserCode = "";
-	_Name = "";
+	_MaKhachHang = "";
+	_Ten = "";
 	_ID = "";
 }
 
 BuyTicket::BuyTicket(const string &UserCode, const string &Name, const string &ID)
 {
-	_UserCode = UserCode;
-	_Name = Name;
+	_MaKhachHang = UserCode;
+	_Ten = Name;
 	_ID = ID;
 }
 BuyTicket::~BuyTicket()
@@ -20,11 +20,15 @@ BuyTicket::~BuyTicket()
 }
 string BuyTicket::GetKey()
 {
-	return _UserCode;
+	return _MaKhachHang;
 }
 string BuyTicket::GetName() const
 {
-	return _Name;
+	return _Ten;
+}
+string BuyTicket::GetGioiTinh() const
+{
+	return _GioiTinh;
 }
 string BuyTicket::GetID() const
 {
@@ -32,11 +36,11 @@ string BuyTicket::GetID() const
 }
 string BuyTicket::GetUserCode() const
 {
-	return _UserCode;
+	return _MaKhachHang;
 }
-string BuyTicket::GetMaCB() const
+string BuyTicket::GetMaISFC() const
 {
-	return _MaChuyenBay;
+	return _MaISFC;
 }
 void BuyTicket::SetDate(Date day)
 {
@@ -46,7 +50,12 @@ void BuyTicket::SetDate(Date day)
 void BuyTicket::SetName(const string &Name)
 {
 	if (!IsEmpty(Name))
-		_Name = Name;
+		_Ten = Name;
+}
+void BuyTicket::SetGioiTinh(const string &gt)
+{
+	if (!IsEmpty(gt))
+		_GioiTinh = gt;
 }
 void BuyTicket::SetID(const string &ID)
 {
@@ -56,19 +65,16 @@ void BuyTicket::SetID(const string &ID)
 void BuyTicket::SetUserCode(const string &UserCode)
 {
 	if (CheckUserCode(UserCode))
-		_UserCode = UserCode;
+		_MaKhachHang = UserCode;
 }
-void BuyTicket::SetMaCB(const string &ma)
+void BuyTicket::SetMaISFC(const string &ma)
 {
 	if (!IsEmpty(ma))
-		_MaChuyenBay = ma;
+		_MaISFC = ma;
 }
 
 bool BuyTicket::CheckID(const string &ID)
 {
-	if (IsEmpty(ID))
-		return false;
-
 	if (ID.length() != 9)
 	{
 		cerr << "\nCMND Khach hang gom 9 ki tu!";
@@ -114,81 +120,100 @@ void BuyTicket::Input()
 	// 	cout << "\nVui long nhap ngay hop le va lon hon hoac bang ngay hien tai!!";
 	// }
 	Airport ap;
-	int found = ap.Search(0, 0);
+	ap.ShowMainInfo(0);
+	int found = ap.Search(0, 1);
 	if (found == NOT_FOUND)
 	{
 		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 		return;
 	}
-	_MaChuyenBay = ap.GetFlight(found)->GetKey();
+
+	_MaISFC = ap.GetFlight(found)->GetKey();
 	while (1)
 	{
 		cout << "\nNhap ten Khach hang: ";
-		getline(cin, _Name);
-		if (!IsEmpty(_Name))
+		getline(cin, _Ten);
+		if (!IsEmpty(_Ten))
+			break;
+	}
+	while (1)
+	{
+		cout << "\nGioi tinh: ";
+		getline(cin, _GioiTinh);
+		if (!IsEmpty(_GioiTinh))
 			break;
 	}
 	while (1)
 	{
 		cout << "\nNhap CMND: ";
 		getline(cin, _ID);
-		if (!IsEmpty(_ID))
+		if (CheckID(_ID))
 			break;
 	}
 	while (1)
 	{
 		cout << "\nMa khach hang: ";
-		getline(cin, _UserCode);
-		if (CheckUserCode(_UserCode))
+		getline(cin, _MaKhachHang);
+		if (CheckUserCode(_MaKhachHang))
 			break;
 	}
 }
 void BuyTicket::Output()
 {
 
-	cout << setiosflags(ios::left)
-		 << "\tTen khach hang: "
-		 << setw(20) << _Name
-		 << "\tCMND: "
-		 << setw(10) << _ID
-		 << "\tMa khach hang: "
-		 << setw(10) << _UserCode
-		 << "\tMa Chuyen bay: " << setw(10) << _MaChuyenBay;
-	//  << "\tNgay mua ve: "
-	//  << setw(10) << date;
+	TextColor(SHOW_COLOR);
+	cout << "  |   " << setw(16) << left << _MaISFC
+		 << "|   " << setw(17) << _Ten
+		 << "|      " << setw(9) << _GioiTinh
+		 << "|     " << setw(9) << _ID
+		 << "|     " << _MaKhachHang;
+}
+void BuyTicket::OutputMainInfo()
+{
+
+	TextColor(SHOW_COLOR);
+	cout
+		<< "|   " << setw(17) << _Ten
+		<< "|      " << setw(9) << _GioiTinh
+
+		;
 }
 
 void BuyTicket::InputFile(ifstream &input)
 {
 	// input >> date;
-	getline(input, _MaChuyenBay);
-	getline(input, _Name);
+	getline(input, _MaISFC);
+	getline(input, _Ten);
+	getline(input, _GioiTinh);
 	getline(input, _ID);
-	getline(input, _UserCode);
+	getline(input, _MaKhachHang);
 }
 void BuyTicket::OutputFile(ofstream &out)
 {
-	out << _MaChuyenBay << endl;
-	out << _Name << endl;
+	out << _MaISFC << endl;
+	out << _Ten << endl;
+	out << _GioiTinh << endl;
 	out << _ID << endl;
-	out << _UserCode << endl;
+	out << _MaKhachHang << endl;
 	// out << date << endl;
 }
 
 BuyTicket &BuyTicket::operator=(const BuyTicket &BuyTicket)
 {
-	_Name = BuyTicket._Name;
+	_Ten = BuyTicket._Ten;
+	_GioiTinh = BuyTicket._GioiTinh;
 	_ID = BuyTicket._ID;
-	_UserCode = BuyTicket._UserCode;
+	_MaKhachHang = BuyTicket._MaKhachHang;
 	return *this;
 }
 
 ostream &operator<<(ostream &os, const BuyTicket &BuyTicket)
 {
-	os << BuyTicket._Name << endl;
+	os << BuyTicket._Ten << endl;
+	os << BuyTicket._GioiTinh << endl;
 	os << BuyTicket._ID << endl;
-	os << BuyTicket._UserCode << endl;
-	os << BuyTicket._MaChuyenBay << endl;
+	os << BuyTicket._MaKhachHang << endl;
+	os << BuyTicket._MaISFC << endl;
 	// os << BuyTicket.date << endl;
 	return os;
 }

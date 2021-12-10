@@ -31,7 +31,7 @@ Flight::~Flight()
 }
 string Flight::GetKey()
 {
-	return _maChuyenBay;
+	return _ISFC;
 }
 string Flight::GetNoiDen() const
 {
@@ -129,6 +129,7 @@ void Flight::Input()
 {
 
 	Airport ap;
+	ap.ShowMainInfo(1);
 	int found = ap.Search(1, 1);
 	if (found == NOT_FOUND)
 	{
@@ -194,8 +195,8 @@ void Flight::Output()
 {
 	// NAM
 	TextColor(SHOW_COLOR);
-	cout << setiosflags(ios::left) << "|     " << setw(6) << left << _maHieu
-		 << "|" << setw(18) << _maChuyenBay
+	cout << "  |   " << setw(9) << left << _maHieu
+		 << "|        " << setw(11) << _maChuyenBay
 		 << "|     "
 		 << setw(12) << _noiDen
 		 << "|     "
@@ -204,6 +205,17 @@ void Flight::Output()
 		 << "|  "
 		 << setw(12) << FormatISFC()
 		 << "|     " << _price << "$";
+}
+void Flight::OutputMainInfo()
+{
+
+	cout << "|        " << left << setw(11) << _maChuyenBay
+		 << "|     "
+		 << setw(12) << _noiDen
+		 << "|     "
+		 << setw(11) << _noiDi
+		 << "|     " << _price << "$";
+	TextColor(7);
 }
 
 void Flight::InputFile(ifstream &input)

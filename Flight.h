@@ -39,6 +39,7 @@ public:
 	string GetKey();
 	void Input();
 	void Output();
+	void OutputMainInfo();
 	string FormatISFC() const;
 
 	void InputFile(ifstream &input);

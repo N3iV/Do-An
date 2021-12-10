@@ -30,9 +30,10 @@ public:
 	void Add(int option);
 	void Delete(int option);
 	void Show(int option);
+	void ShowMainInfo(int option);
 	int Search(int option, int type);
+	void Sort(int option);
 	void Edit(int option);
-	// void BuyTickets();
 	void CancelTickets();
 	void getDSMB();
 	// void OverdueList();

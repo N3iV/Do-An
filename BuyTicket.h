@@ -7,9 +7,10 @@
 class BuyTicket : public AirportSystem
 {
 private:
-	string _MaChuyenBay;
-	string _Name;
-	string _UserCode;
+	string _MaISFC;
+	string _GioiTinh;
+	string _Ten;
+	string _MaKhachHang;
 	string _ID;
 	Date date;
 
@@ -17,12 +18,14 @@ public:
 	BuyTicket();
 	BuyTicket(const string &, const string &, const string &);
 	~BuyTicket();
-	string GetMaCB() const;
+	string GetGioiTinh() const;
+	string GetMaISFC() const;
 	string GetName() const;
 	string GetUserCode() const;
 	string GetID() const;
 	string GetKey();
-	void SetMaCB(const string &);
+	void SetGioiTinh(const string &);
+	void SetMaISFC(const string &);
 	void SetName(const string &);
 	void SetUserCode(const string &);
 	void SetID(const string &);
@@ -32,6 +35,7 @@ public:
 
 	void Input();
 	void Output();
+	void OutputMainInfo();
 	string FormatUserCode() const;
 
 	void InputFile(ifstream &input);
