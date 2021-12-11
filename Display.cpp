@@ -35,20 +35,20 @@ void TextColor(int color)
 
 	SetConsoleTextAttribute(Color, color);
 }
-void vekhung(int x,int y,int h,int w)//N
+void vekhung(int x, int y, int h, int w) // N
 {
-    cout.fill(196);
-    gotoxy(x,y);
-    cout<<char(218)<<setw(w)<<char(196)<<char(191);
-    cout.fill(' ');
-    for(int i=1; i<=h; ++i)
-    {
-        gotoxy(x,y+i);
-        cout<<char(179)<<setw(w)<<' '<<char(179);
-    }
-    gotoxy(x,y+h+1);
-    cout.fill(196);
-    cout<<char(192)<<setw(w)<<char(196)<<char(217);
+	cout.fill(196);
+	gotoxy(x, y);
+	cout << char(218) << setw(w) << char(196) << char(191);
+	cout.fill(' ');
+	for (int i = 1; i <= h; ++i)
+	{
+		gotoxy(x, y + i);
+		cout << char(179) << setw(w) << ' ' << char(179);
+	}
+	gotoxy(x, y + h + 1);
+	cout.fill(196);
+	cout << char(192) << setw(w) << char(196) << char(217);
 }
 void Display::SayGoodBye()
 {
@@ -74,7 +74,7 @@ void Display::ShowOptionMenu()
 {
 	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	cout << setw(52) << right << "============= HIEN THI THONG TIN ============="; 
+	cout << setw(52) << right << "============= HIEN THI THONG TIN =============";
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
 	cout << "    Chuyen bay bay    ";
@@ -138,35 +138,35 @@ void Display::ControlShowOption()
 				switch (option)
 				{
 				case 0:
-				{ 
+				{
 					cout << "                           ========= DANH SACH CHUYEN BAY =========                          " << endl;
 					TextColor(SHOW_COLOR);
 					cout << "STT |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
 					cout << "=======================================================================================================";
-				    break; 
-				}     
-					
+					break;
+				}
+
 				case 1:
 				{
 					cout << "                           ========== DANH SACH MAY BAY ==========                           " << endl;
 
 					TextColor(SHOW_COLOR);
-					cout << "STT |     Ma hieu     |     Loai     |     Code     |     So day     |     So ghe     |     So ve" << endl;
-					cout << "==================================================================================================" ;
-				    break;
+					cout << "STT |     Ma hieu     |     Loai     |     Code     " << endl;
+					cout << "====================================================";
+					break;
 				}
 
 				default:
 				{
-					cout << "\n                    ======= DANH SACH VE MAY BAY =======                                    "<<endl;
+					cout << "\n                    ======= DANH SACH VE MAY BAY =======                                    " << endl;
 					TextColor(SHOW_COLOR);
 					cout << "STT |   Ma chuyen bay   |   Ten khach hang   |   Gioi tinh   |     CMND     |   Ma khach hang" << endl;
-					cout << "=============================================================================================" ;
-					}
-
-					break;
+					cout << "=============================================================================================";
 				}
-				
+
+				break;
+				}
+
 				Airport aport;
 				aport.Show(option);
 				TextColor(12);
@@ -191,7 +191,7 @@ int ReduceUpdateCode(const char *functionName)
 	system("cls");
 	ShowConsoleCursor(true);
 	TextColor(UPDATE_COLOR);
-	cout << setw(17) << right << "========== " << functionName << " ==========" << endl;
+	cout << setw(14) << right << "========== " << functionName << " ==========" << endl;
 	TextColor(10);
 	cout << "0 - CHUYEN BAY, 1 - MAY BAY >> ";
 	TextColor(7);
@@ -207,7 +207,7 @@ void Display::UpdateOptionMenu()
 {
 	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	cout << setw(41) << "============= CAP NHAT ============="; 
+	cout << setw(41) << "============= CAP NHAT =============";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
@@ -393,10 +393,10 @@ void Display::ControlSearchOption()
 					if (found != NOT_FOUND)
 					{
 						TextColor(SHOW_COLOR);
-						gotoxy(33,5);
+						gotoxy(33, 5);
 						cout << "========== TIM THAY ==========" << endl;
 						cout << "  |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-					    cout << "======================================================================================================="<<endl;
+						cout << "=======================================================================================================" << endl;
 						aport.GetFlight(found)->Output();
 					}
 					else
@@ -449,10 +449,10 @@ void Display::ControlSearchOption()
 					if (found != NOT_FOUND)
 					{
 						TextColor(13);
-						cout << setw(60) << right <<"========== TIM THAY ==========" << endl;
+						cout << setw(60) << right << "========== TIM THAY ==========" << endl;
 						TextColor(SHOW_COLOR);
-					    cout << "  |   Ma chuyen bay   |   Ten khach hang   |   Gioi tinh   |     CMND     |   Ma khach hang" << endl;
-					    cout << "=============================================================================================" ;
+						cout << "  |   Ma chuyen bay   |   Ten khach hang   |   Gioi tinh   |     CMND     |   Ma khach hang" << endl;
+						cout << "=============================================================================================";
 						aport.GetTicket(found)->Output();
 					}
 					else
@@ -532,7 +532,7 @@ void Display::ControlCancelTicketOption()
 void Display::MainMenu()
 {
 
-	gotoxy(PIVOT_X-12, TITLE_Y );
+	gotoxy(PIVOT_X - 12, TITLE_Y);
 	TextColor(TITLE_COLOR);
 	cout << "====== HE THONG QUAN LY SAN BAY ======";
 

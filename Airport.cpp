@@ -64,6 +64,12 @@ bool Airport::IsExist(int option, AirportSystem *as) const
 			if (((Plane *)as)->GetCodeMB() == ((Plane *)_pl[i])->GetCodeMB())
 				return true;
 	}
+	case 2:
+	{
+		for (int i = 0; i < _pl.size(); ++i)
+			if (((Plane *)as)->GetMaHieu() == ((Plane *)_pl[i])->GetMaHieu())
+				return true;
+	}
 	default:
 	{
 		break;
@@ -249,7 +255,7 @@ void Airport::Add(int option)
 
 		fflush(stdin);
 		planes->Input();
-		if (!IsExist(option, planes))
+		if (!IsExist(option, planes) && !IsExist(option + 1, planes))
 			planes->OutputFile(output);
 		else
 			cout << "\nMay bay da da ton tai  !";
@@ -296,12 +302,13 @@ void Airport::Delete(int option)
 		found = Search(option, 0);
 		if (found == NOT_FOUND)
 		{
+			TextColor(12);
 			cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 			return;
 		}
 		while (1)
 		{
-			cout << "Nhan \"yes\" de xac nhan xoa may bay nay: ";
+			cout << "\nNhan \"yes\" de xac nhan xoa chuyen bay may bay nay: ";
 			cin >> confirm;
 
 			if (strcmp(confirm, "yes") == 0)
@@ -312,7 +319,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 	}
 	break;
@@ -321,12 +328,13 @@ void Airport::Delete(int option)
 		found = Search(option, 1);
 		if (found == NOT_FOUND)
 		{
+			TextColor(12);
 			cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 			return;
 		}
 		while (1)
 		{
-			cout << "Nhan \"yes\" de xac nhan xoa may bay nay: ";
+			cout << "\nNhan \"yes\" de xac nhan xoa may bay nay: ";
 			cin >> confirm;
 
 			if (strcmp(confirm, "yes") == 0)
@@ -337,7 +345,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 	}
 	break;
@@ -346,12 +354,13 @@ void Airport::Delete(int option)
 		found = Search(option, 0);
 		if (found == NOT_FOUND)
 		{
+			TextColor(12);
 			cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 			return;
 		}
 		while (1)
 		{
-			cout << "Nhan \"yes\" de xac nhan xoa may bay nay: ";
+			cout << "\nNhan \"yes\" de xac nhan huy ve may bay nay: ";
 			cin >> confirm;
 
 			if (strcmp(confirm, "yes") == 0)
@@ -362,7 +371,7 @@ void Airport::Delete(int option)
 				break;
 			}
 			else
-			    return;
+				return;
 		}
 		break;
 	}
@@ -384,7 +393,10 @@ int Airport::Search(int option, int type)
 		case 0:
 		{
 			// search by title
-			cout << "\nNhap ma chuyen bay: ";
+			TextColor(13);
+			vekhung(0, 2, 1, 25);
+			gotoxy(2, 3);
+			cout << "Nhap ma chuyen bay: "<< setfill(' ');
 			string maChuyenBay;
 			fflush(stdin);
 			getline(cin, maChuyenBay);
@@ -400,10 +412,11 @@ int Airport::Search(int option, int type)
 			string ISFC;
 			fflush(stdin);
 			while (1)
-			{//N
-				vekhung(0,2,1,28);
-				gotoxy(2,3);
-				cout << "Nhap ma ISFC-9: "<<setfill(' ');
+			{ 
+				TextColor(13);
+				vekhung(0, 2, 1, 27);
+				gotoxy(2, 3);
+				cout << "Nhap ma ISFC-9: " << setfill(' ');
 				getline(cin, ISFC);
 				if (Flight::CheckFC(ISFC))
 					break;
@@ -422,8 +435,10 @@ int Airport::Search(int option, int type)
 		case 0:
 		{
 			// search by name
-
-			cout << "\nNhap loai may bay: ";
+			TextColor(13);
+            vekhung(0, 2, 1, 30);
+			gotoxy(2, 3);
+			cout << "Nhap loai may bay: "<< setfill(' ');
 			string name;
 			fflush(stdin);
 			getline(cin, name);
@@ -435,7 +450,10 @@ int Airport::Search(int option, int type)
 		case 1:
 		{
 			// search by ID
-			cout << "\nNhap ma hieu: ";
+			TextColor(13);
+            vekhung(0, 2, 1, 21);
+			gotoxy(2, 3);
+			cout << "Nhap ma hieu: "<< setfill(' ');
 			string maHieu;
 			fflush(stdin);
 			getline(cin, maHieu);
@@ -451,8 +469,10 @@ int Airport::Search(int option, int type)
 	}
 	default:
 	{
-
-		cout << "\nNhap ten nguoi mua ve: ";
+        TextColor(13);
+        vekhung(0, 2, 1, 42);
+		gotoxy(2, 3);
+		cout << "Nhap ten nguoi mua ve: "<< setfill(' ');
 		string name_ID;
 		getline(cin, name_ID);
 		for (int i = 0; i < _bt.size(); ++i)
@@ -471,6 +491,7 @@ void Airport::Edit(int option)
 	int found = Search(option, 0);
 	if (found == NOT_FOUND)
 	{
+		TextColor(12);
 		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 		return;
 	}
@@ -482,15 +503,15 @@ void Airport::Edit(int option)
 		TextColor(SHOW_COLOR);
 		cout << setw(61) << right << "========== TIM THAY ==========" << endl;
 		cout << "  |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-		cout << "======================================================================================================="<< endl;
+		cout << "=======================================================================================================" << endl;
 		_fl[found]->Output();
-		TextColor(3);
+		TextColor(13);
 		cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
 		cin >> type;
 		if (cin.fail())
 			throw "Du lieu nhap khong la so";
 		fflush(stdin);
-		TextColor(11);
+		TextColor(13);
 		switch (type)
 		{
 		case 0:
@@ -602,34 +623,6 @@ void Airport::Edit(int option)
 					break;
 			}
 			((Plane *)_pl[found])->SetCodeMB(Code);
-			break;
-		}
-		case 4:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			int age = 0;
-			while (1)
-			{
-				cout << "Nhap so day: ";
-				cin >> age;
-				if (age > 0)
-					break;
-			}
-			((Plane *)_pl[found])->SetSoDay(age);
-			break;
-		}
-		default:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			int age = 0;
-			while (1)
-			{
-				cout << "Nhap so ghe: ";
-				cin >> age;
-				if (age > 0)
-					break;
-			}
-			((Plane *)_pl[found])->SetSoGhe(age);
 			break;
 		}
 		}
