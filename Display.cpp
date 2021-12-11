@@ -190,7 +190,7 @@ int ReduceUpdateCode(const char *functionName)
 {
 	system("cls");
 	ShowConsoleCursor(true);
-	TextColor(UPDATE_COLOR);
+	TextColor(TITLE_COLOR);
 	cout << setw(14) << right << "========== " << functionName << " ==========" << endl;
 	TextColor(10);
 	cout << "0 - CHUYEN BAY, 1 - MAY BAY >> ";
@@ -378,7 +378,7 @@ void Display::ControlSearchOption()
 				{
 					system("cls");
 					ShowConsoleCursor(true);
-					TextColor(UPDATE_COLOR);
+					TextColor(TITLE_COLOR);
 					cout << setw(43) << "========== TIM KIEM CHUYEN BAY ==========" << endl; // NAM
 					TextColor(10);
 					cout << "Tim kiem bang (0 - Ma chuyen bay, 1 - ISFC) >> ";
@@ -401,7 +401,7 @@ void Display::ControlSearchOption()
 					}
 					else
 					{
-						TextColor(13);
+						TextColor(12);
 						cout << "\n========== KHONG TIM THAY ==========" << endl;
 					}
 					break;
@@ -410,8 +410,8 @@ void Display::ControlSearchOption()
 				{
 					system("cls");
 					ShowConsoleCursor(true);
-					TextColor(UPDATE_COLOR);
-					cout << setw(44) << right << "========== TIM KIEM MAY BAY ==========" << endl;
+					TextColor(TITLE_COLOR);
+					cout <<setw(43)<< "========== TIM KIEM MAY BAY ==========" << endl;
 					TextColor(10);
 					cout << "Tim kiem bang (0 - Loai may bay, 1 - Ma hieu) >> ";
 					TextColor(7);
@@ -425,14 +425,15 @@ void Display::ControlSearchOption()
 					if (found != NOT_FOUND)
 					{
 						TextColor(SHOW_COLOR);
-						cout << setw(60) << right << "========== TIM THAY ==========" << endl;
-						cout << "  |     Ma hieu     |     Loai     |     Code     |     So day     |     So ghe     |     So ve" << endl;
-						cout << "===============================================================================================" << endl;
+						gotoxy(8, 5);
+						cout << "========== TIM THAY ==========" << endl;
+						cout << "  |     Ma hieu     |     Loai     |     Code" << endl;
+						cout << "==================================================" << endl;
 						aport.GetPlane(found)->Output();
 					}
 					else
 					{
-						TextColor(13);
+						TextColor(12);
 						cout << "\n========== KHONG TIM THAY ==========" << endl;
 					}
 					break;
@@ -441,23 +442,23 @@ void Display::ControlSearchOption()
 				{
 					system("cls");
 					ShowConsoleCursor(true);
-					TextColor(UPDATE_COLOR);
-					cout << "========== TIM KIEM VE ==========" << endl;
+					TextColor(TITLE_COLOR);
+					cout <<setw(38)<< "========== TIM KIEM VE ==========" << endl;
 					TextColor(11);
 					Airport aport;
 					int found = aport.Search(option, 0);
 					if (found != NOT_FOUND)
 					{
-						TextColor(13);
-						cout << setw(60) << right << "========== TIM THAY ==========" << endl;
 						TextColor(SHOW_COLOR);
+						gotoxy(33, 5);
+						cout << "========== TIM THAY ==========" << endl;
 						cout << "  |   Ma chuyen bay   |   Ten khach hang   |   Gioi tinh   |     CMND     |   Ma khach hang" << endl;
-						cout << "=============================================================================================";
+						cout << "============================================================================================="<<endl;
 						aport.GetTicket(found)->Output();
 					}
 					else
 					{
-						TextColor(13);
+						TextColor(12);
 						cout << "\n========== KHONG TIM THAY ==========" << endl;
 					}
 					break;
@@ -484,11 +485,9 @@ void Display::ControlSearchOption()
 void Display::ControlBuyTicketOption()
 {
 	system("cls");
-	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	ShowConsoleCursor(true);
-	cout << "======== MUA VE ========";
-	TextColor(7);
+	gotoxy(2,1);
+	cout << "======== DAT VE ========";
 	Airport aport;
 	aport.BuyTickets();
 	TextColor(12);
@@ -500,11 +499,9 @@ void Display::ControlBuyTicketOption()
 void Display::ControlCancelTicketOption()
 {
 	system("cls");
-	gotoxy(TITLE_X - 2, TITLE_Y);
 	TextColor(TITLE_COLOR);
-	ShowConsoleCursor(true);
+	gotoxy(2,2);
 	cout << "======== HUY VE ========";
-	TextColor(7);
 	Airport aport;
 	aport.CancelTickets();
 	TextColor(12);

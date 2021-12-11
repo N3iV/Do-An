@@ -5,12 +5,6 @@ viet nam
 VNA931202
 120
 MH123
-VNL
-lao
-viet nam
-VNA321932
-312
-MH123
 VNU
 uauauaa
 vie tnam
@@ -22,3 +16,9 @@ koreeeee
 viet nam
 VNA123999
 3000
+MH123
+VNL
+da nang
+ha
+VNA000999
+50

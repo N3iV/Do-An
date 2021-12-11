@@ -223,6 +223,7 @@ void Airport::Add(int option)
 			int found = Search(1, 1);
 			if (found == NOT_FOUND)
 			{
+				TextColor(12);
 				cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 				return;
 			}
@@ -272,6 +273,7 @@ void Airport::Add(int option)
 		int found = Search(0, 1);
 		if (found == NOT_FOUND)
 		{
+			TextColor(12);
 			cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 			return;
 		}
