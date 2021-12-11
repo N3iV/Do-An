@@ -68,6 +68,11 @@ void Plane::SetCodeMB(const string &codeMB)
 	if (CheckCode(codeMB))
 		_code = codeMB;
 }
+void Plane::SetKey(const string &key)
+{
+
+	_maHieu = key;
+}
 
 bool Plane::CheckCode(const string &Code)
 {
@@ -138,7 +143,7 @@ void Plane::OutputFile(ofstream &out)
 	out << _maHieu << endl;
 	out << _loaiMB << endl;
 	out << _code << endl;
-	out << " " << endl;
+	out << "" << endl;
 }
 
 Plane &Plane::operator=(const Plane &plane)

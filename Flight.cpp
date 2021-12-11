@@ -33,6 +33,7 @@ string Flight::GetKey()
 {
 	return _ISFC;
 }
+
 string Flight::GetNoiDen() const
 {
 	return _noiDen;
@@ -58,7 +59,10 @@ double Flight::GetPrice() const
 {
 	return _price;
 }
-
+void Flight::SetKey(const string &ma)
+{
+	_maHieu = ma;
+}
 void Flight::SetMaChuyenBay(const string &maChuyenBay)
 {
 	if (!IsEmpty(maChuyenBay))
@@ -128,14 +132,15 @@ string Flight::FormatISFC() const
 void Flight::Input()
 {
 
-	Airport ap;
-	int found = ap.Search(1, 1);
-	if (found == NOT_FOUND)
-	{
-		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
-		return;
-	}
-	_maHieu = ap.GetPlane(found)->GetKey();
+	// Airport ap;
+	// int found = ap.Search(1, 1);
+	// if (found == NOT_FOUND)
+	// {
+	// 	cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
+	// 	return;
+	// }
+	// else
+	// 	_maHieu = ap.GetPlane(found)->GetKey();
 
 	while (1)
 	{

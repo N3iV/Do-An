@@ -37,6 +37,7 @@ public:
 
 	static bool CheckFC(const string &ISFC);
 	string GetKey();
+	void SetKey(const string &);
 	void Input();
 	void Output();
 	string FormatISFC() const;

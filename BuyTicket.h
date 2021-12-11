@@ -18,7 +18,7 @@ public:
 	BuyTicket();
 	BuyTicket(const string &, const string &, const string &);
 	~BuyTicket();
-	string GetGioiTinh() const ;
+	string GetGioiTinh() const;
 	string GetMaISFC() const;
 	string GetName() const;
 	string GetUserCode() const;
@@ -30,6 +30,7 @@ public:
 	void SetUserCode(const string &);
 	void SetID(const string &);
 	void SetDate(Date date);
+	void SetKey(const string &);
 	static bool CheckUserCode(const string &);
 	static bool CheckID(const string &);
 
