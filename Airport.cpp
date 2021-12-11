@@ -221,16 +221,19 @@ void Airport::Add(int option)
 			AirportSystem *flight = new Flight;
 			if (flight == NULL)
 				throw "Khong the cap phat bo nho";
-			// int found = Search(1, 1);
-			// if (found == NOT_FOUND)
-			// {
-			// 	cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
-			// 	return;
-			// }
+			int found = Search(1, 1);
+			if (found == NOT_FOUND)
+			{
+				cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
+				return;
+			}
+			string ma = GetPlane(found)->GetKey();
+			cout << ma;
 			flight->Input();
 			if (!IsExist(option, flight))
 			{
 
+				flight->SetKey(ma);
 				flight->OutputFile(output);
 				output.close();
 			}
@@ -272,19 +275,34 @@ void Airport::Add(int option)
 			throw "Khong the cap phat bo nho";
 		fflush(stdin);
 
+		int found = Search(0, 1);
+		if (found == NOT_FOUND)
+		{
+			cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
+			return;
+		}
+		string _MaISFC = GetFlight(found)->GetKey();
+		cout << _MaISFC;
 		bt->Input();
 		for (int i = 0; i < _pl.size(); ++i)
 			if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_pl[i])->GetUserCode())
 			{
 				if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_pl[i])->GetUserCode())
+				{
+
 					bt->OutputFile(output);
+				}
 				else
 					cerr << "\n=== ERROR: Trung ID nhung khac thong tin ===" << endl;
 				output.close();
 				return;
 			}
 		if (!IsExist(option, bt))
+		{
+			bt->SetKey(_MaISFC);
+
 			bt->OutputFile(output);
+		}
 		else
 			cout << "\nVe ton tai  !";
 		break;

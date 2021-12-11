@@ -35,6 +35,7 @@ public:
 	void InputFile(ifstream &input);
 	void OutputFile(ofstream &path);
 	string GetKey();
+	void SetKey(const string &);
 	Plane &operator=(const Plane &r);
 	friend ostream &operator<<(ostream &os, const Plane &users);
 	friend bool operator==(const Plane &r1, const Plane &r2);
