@@ -36,6 +36,8 @@ public:
 
 	void Input();
 	void Output();
+	void OutputMainInfo();
+
 	string FormatUserCode() const;
 
 	void InputFile(ifstream &input);

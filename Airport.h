@@ -27,15 +27,15 @@ public:
 	bool IsExist(int option, AirportSystem *as) const;
 	void LoadDataFromFile(int option); // 0- may bay, 1-chuyen bay, 2-ve
 	void OutputDataToFile(int option);
+
 	void Add(int option);
 	void Delete(int option);
 	void Show(int option);
+	void ShowMainInfo(int option);
 	int Search(int option, int type);
 	void Edit(int option);
 	void BuyTickets();
 	void CancelTickets();
-	void getDSMB();
-	// void OverdueList();
 };
 
 #endif

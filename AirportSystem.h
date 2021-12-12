@@ -21,7 +21,7 @@
 #define _FLIGHT_CODE_9 "VNA"
 using namespace std;
 
-// Ham ho tro
+// Helper Function
 bool IsEmpty(const string &data);
 string ToLower(const string &str);
 
@@ -34,6 +34,7 @@ public:
 	virtual void SetKey(const string &) = 0;
 	virtual void Input() = 0;
 	virtual void Output() = 0;
+	virtual void OutputMainInfo() = 0;
 	virtual void InputFile(ifstream &input) = 0;
 	virtual void OutputFile(ofstream &path) = 0;
 	~AirportSystem(){};

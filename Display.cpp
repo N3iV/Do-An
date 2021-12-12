@@ -509,22 +509,6 @@ void Display::ControlCancelTicketOption()
 	_getch();
 }
 
-// ======== OVERDUE LIST OPTION ========= //
-// void Display::ControlOverdueListOption()
-// {
-// 	system("cls");
-// 	gotoxy(TITLE_X - 2, TITLE_Y);
-// 	TextColor(TITLE_COLOR);
-// 	ShowConsoleCursor(true);
-// 	cout << "======== He Thong Quan Ly Thu Vien - Danh sach qua han muon sach ========";
-// 	TextColor(7);
-// 	Airport aport;
-// 	aport.OverdueList();
-// 	TextColor(12);
-// 	cout << "\n<== Nhan phim bat ky de tiep tuc ==>" << endl;
-// 	_getch();
-// }
-
 // ======== MAIN DISPLAY ======== //
 void Display::MainMenu()
 {
@@ -705,14 +689,14 @@ void Display::MainLogin()
 				case 1:
 				{
 					app.dangKi();
-					MainLogin();
-					return;
+					// MainLogin();
+					// return;
 				}
 				case 2:
 				{
 					app.dangNhap();
-					MainLogin();
-					return;
+					// MainLogin();
+					// return;
 				}
 				break;
 				}

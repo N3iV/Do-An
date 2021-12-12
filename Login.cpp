@@ -22,7 +22,6 @@ bool isValid(const string &email)
 //?-------------------VALIDATE EMAIL --------------------?//
 Login::Login()
 {
-    quyenTruyCap = 0;
 }
 void Login::inputPass(string &tmp)
 {
@@ -54,38 +53,44 @@ void Login::dangNhap()
     system("cls");
     Figlet figlet(FigletFont::make("Fonts/Standard.flf"), Smushed::make());
     cout << figlet("Dang nhap");
-    cout << "Nhap tai khoan va mat khau.\nEmail:";
-    cin >> taiKhoanTmp;
 
-    int userID = checkFile(taiKhoanTmp, USER_DATA_PATH);
-    if (userID != 0)
+    while (1)
     {
-        cout << "Mat khau (Enter de xac nhan):";
-        string matKhauTmp;
-        inputPass(matKhauTmp);
 
-        int passwordID = checkFile(matKhauTmp, PASSWORD_DATA_PATH);
-        if (userID == passwordID)
+        cout << "Nhap tai khoan va mat khau.\nEmail:";
+        cin >> taiKhoanTmp;
+        int userID = checkFile(taiKhoanTmp, USER_DATA_PATH);
+        if (userID != 0)
         {
-            quyenTruyCap = 1;
-            if (quyenTruyCap)
+            cout << "Mat khau (Enter de xac nhan):";
+            string matKhauTmp;
+            inputPass(matKhauTmp);
+
+            int passwordID = checkFile(matKhauTmp, PASSWORD_DATA_PATH);
+            if (userID == passwordID)
             {
+
                 Display display;
                 display.DisplayMain();
-
                 cin.get();
+
+                break;
+            }
+            else
+            {
+                cout << "Sai mat khau!\n"
+                     << endl;
+                system("pause");
+                dangNhap();
             }
         }
         else
         {
-            cout << "Sai mat khau." << endl;
+            cout << "Ten dang nhap khong dung! \n"
+                 << endl;
+            system("pause");
             dangNhap();
         }
-    }
-    else
-    {
-        cout << "Ten dang nhap khong dung." << endl;
-        dangNhap();
     }
 }
 bool Login::checkFile(string attempt, const char *p_fileName)

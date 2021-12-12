@@ -39,15 +39,6 @@ AirportSystem *Airport::GetTicket(int pos) const
 		throw "Vi tri truy cap khong hop le";
 	return _bt[pos];
 }
-void Airport::getDSMB()
-{
-	for (int i = 0; i < _pl.size(); ++i)
-	{
-		// cout << _pl[i];
-		cout << "Chuyen bay " << ((Flight *)_pl[i])->GetMaChuyenBay() << endl;
-		cout << "May bay " << ((Plane *)_fl[i])->GetMaHieu() << endl;
-	}
-}
 bool Airport::IsExist(int option, AirportSystem *as) const
 {
 	switch (option)
@@ -203,7 +194,26 @@ void Airport::Show(int option)
 		tmp[i]->Output();
 	}
 }
+void Airport::ShowMainInfo(int option)
+{
+	LoadDataFromFile(option);
+	vector<AirportSystem *> tmp;
 
+	if (option == 0)
+		tmp = _fl;
+	else if (option == 1)
+		tmp = _pl;
+	else
+		tmp = _bt;
+	for (int i = 0; i < tmp.size(); ++i)
+	{
+		TextColor(SHOW_COLOR);
+		cout << "\n";
+		TextColor(7);
+
+		tmp[i]->OutputMainInfo();
+	}
+}
 void Airport::Add(int option)
 {
 	LoadDataFromFile(option);
@@ -220,6 +230,7 @@ void Airport::Add(int option)
 		AirportSystem *flight = new Flight;
 		if (flight == NULL)
 			throw "Khong the cap phat bo nho";
+		ShowMainInfo(1);
 		int found = Search(1, 1);
 		if (found == NOT_FOUND)
 		{
@@ -228,7 +239,6 @@ void Airport::Add(int option)
 			return;
 		}
 		string maChuyenBay = GetPlane(found)->GetKey();
-
 		flight->Input();
 		if (!IsExist(option, flight))
 		{
@@ -269,6 +279,7 @@ void Airport::Add(int option)
 		if (bt == NULL)
 			throw "Khong the cap phat bo nho";
 		fflush(stdin);
+		ShowMainInfo(0);
 
 		int found = Search(0, 1);
 		if (found == NOT_FOUND)

@@ -1,0 +1,40 @@
+MH111
+VNK
+Korean
+Viet Nam
+VNA999000
+3000
+12
+2
+2022
+1
+MH112
+VNL
+Lao
+Viet Nam
+VNA999001
+1500
+12
+5
+2021
+0
+MH113
+HNDN
+Da Nang
+Ha Noi
+VNA999002
+300
+28
+4
+2022
+1
+MH114
+VNM
+Malaysia
+Viet Nam
+VNA999003
+800
+8
+9
+2021
+0

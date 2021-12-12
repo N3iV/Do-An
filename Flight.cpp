@@ -400,6 +400,22 @@ void Flight::Output()
 		 << "|      " << _ngay << "/" << _thang << "/" << _nam
 		 << "|        " << tt;
 }
+void Flight::OutputMainInfo()
+{
+	if (_trangThai == 1)
+	{
+		cout << "|        " << left << setw(11) << _ISFC
+			 << "|     "
+			 << setw(12) << _noiDen
+			 << "|     "
+			 << setw(11) << _noiDi
+			 << "|     " << _giaVe << "$"
+			 << "|      " << _ngay << "/" << _thang << "/" << _nam;
+		TextColor(7);
+	}
+	else
+		cout << "";
+}
 
 void Flight::InputFile(ifstream &input)
 {

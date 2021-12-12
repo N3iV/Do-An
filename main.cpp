@@ -47,8 +47,8 @@ void loading()
 int main()
 {
 
-	loading();
-	Sleep(200);
+	// loading();
+	// Sleep(200);
 	try /// dung de bat cac ngoai le
 	{
 		createDataFile();

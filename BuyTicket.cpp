@@ -160,6 +160,16 @@ void BuyTicket::Output()
 		 << "|     " << setw(9) << _ID
 		 << "|     " << _MaKhachHang;
 }
+void BuyTicket::OutputMainInfo()
+{
+
+	TextColor(SHOW_COLOR);
+	cout
+		<< "|   " << setw(17) << _Ten
+		<< "|      " << setw(9) << _GioiTinh
+
+		;
+}
 
 void BuyTicket::InputFile(ifstream &input)
 {
