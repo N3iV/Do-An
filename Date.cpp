@@ -1,13 +1,5 @@
 #include "Date.h"
 
-#include <ctime>
-tm *currentTime()
-{
-	time_t currentTime = time(0);	   // lay date/time hien tai he thong, he thong k có time tra ve -1
-	tm *crt = localtime(&currentTime); // trả về con trỏ tới cấu trúc tm biểu diễn local time
-	return crt;
-}
-
 Date::Date()
 {
 	this->d = 1;
@@ -29,20 +21,7 @@ Date::Date(const Date &date)
 	this->m = date.m;
 	this->y = date.y;
 }
-bool Date::checkDay()
-{
-	tm *crt = currentTime();
-	Date date;
-	int yearHT = crt->tm_year + 1900; // tm_year cchi tra ve 120
-	int monthHT = crt->tm_mon + 1;
-	int dayHT = crt->tm_mday;
 
-	if (date.d >= dayHT && date.m >= monthHT && date.y >= yearHT)
-	{
-		return true;
-	}
-	return false;
-}
 bool Date::isLeapYear()
 {
 	if (this->y % 4 == 0)

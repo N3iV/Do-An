@@ -42,11 +42,7 @@ string BuyTicket::GetMaISFC() const
 {
 	return _MaISFC;
 }
-void BuyTicket::SetDate(Date day)
-{
-	if (day.validityCheck_Fix())
-		date = day;
-}
+
 void BuyTicket::SetName(const string &Name)
 {
 	if (!IsEmpty(Name))
