@@ -63,6 +63,8 @@ public:
 	void Output();
 	void OutputMainInfo();
 
+	// *---------------------------*//
+
 	void InputFile(ifstream &input);
 	void OutputFile(ofstream &path);
 

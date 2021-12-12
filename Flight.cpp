@@ -275,31 +275,18 @@ bool Flight::ValidateDay(int ngay)
 bool Flight::CheckDay(int ngay, int thang, int nam)
 {
 	tm *crt = currentTime();
-	int yearHT = crt->tm_year + 1900; // tm_year cchi tra ve 120
-	int monthHT = crt->tm_mon + 1;
-	int dayHT = crt->tm_mday;
-	if (nam >= yearHT)
+	int yearCurrent = crt->tm_year + 1900; // tm_year cchi tra ve 120
+	int monthCurrent = crt->tm_mon + 1;
+	int dayCurrent = crt->tm_mday;
+	if (nam < yearCurrent || nam == yearCurrent && thang < monthCurrent || nam == yearCurrent && thang == monthCurrent && ngay < dayCurrent)
 		return true;
-	else if (ngay >= dayHT && thang >= monthHT)
-	{
-		return true;
-	}
+
 	return false;
 }
 // Validate date
 
 void Flight::Input()
 {
-
-	// Airport ap;
-	// int found = ap.Search(1, 1);
-	// if (found == NOT_FOUND)
-	// {
-	// 	cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
-	// 	return;
-	// }
-	// else
-	// 	_maHieu = ap.GetPlane(found)->GetKey();
 
 	while (1)
 	{

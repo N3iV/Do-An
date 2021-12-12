@@ -296,7 +296,6 @@ void Airport::Add(int option)
 				if (((BuyTicket *)bt)->GetUserCode() == ((BuyTicket *)_pl[i])->GetUserCode())
 				{
 					bt->SetKey(MaISFC);
-
 					bt->OutputFile(output);
 				}
 				else

@@ -1,7 +1,9 @@
 #include "BuyTicket.h"
 #include <iomanip>
 #include "Airport.h"
+#include <ctime>
 using namespace std;
+
 BuyTicket::BuyTicket()
 {
 	_MaKhachHang = "";
@@ -105,7 +107,6 @@ bool BuyTicket::CheckUserCode(const string &UserCode)
 		}
 	return true;
 }
-
 void BuyTicket::Input()
 {
 
