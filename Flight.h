@@ -23,7 +23,7 @@ private:
 public:
 	Flight();
 	Flight(const Flight &);
-	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, const double &giaVe, const int &ngay, const int &thang, const int &nam, const int &gio, const int &phut, const int &trangThai);
+	Flight(const string &, const string &, const string &, const string &, const double &, const int &, const int &, const int &, const int &, const int &);
 	~Flight();
 
 	string GetMaChuyenBay() const;
@@ -39,12 +39,12 @@ public:
 	int GetPhut() const;
 	int GetTrangThai() const;
 
-	void SetMaChuyenBay(const string &title);
-	void SetMaHieu(const string &title);
-	void SetNoiDen(const string &noiDen);
-	void SetNoiDi(const string &noiDi);
-	void SetISFC(const string &ISFC);
-	void SetGia(const double &price);
+	void SetMaChuyenBay(const string &);
+	void SetMaHieu(const string &);
+	void SetNoiDen(const string &);
+	void SetNoiDi(const string &);
+	void SetISFC(const string &);
+	void SetGia(const double &);
 	void SetNgay(const int &);
 	void SetThang(const int &);
 	void SetNam(const int &);
@@ -56,12 +56,12 @@ public:
 	void SetKey(const string &);
 
 	//* ---- VALIDATE ---- *//
-	static bool CheckFC(const string &ISFC);
+	static bool CheckFC(const string &);
 	bool isLeapYear();
-	bool ValidateYear(int nam);
-	bool ValidateMonth(int thang);
-	bool ValidateDay(int ngay);
-	bool CheckDay(int ngay, int thang, int nam, int gio);
+	bool ValidateYear(int);
+	bool ValidateMonth(int);
+	bool ValidateDay(int);
+	bool CheckDay(int, int, int, int);
 	string FormatISFC() const;
 	//*----------------------*//
 
