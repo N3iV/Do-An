@@ -15,13 +15,15 @@ private:
 	int _ngay;
 	int _thang;
 	int _nam;
+	int _gio;
+	int _phut;
 	double _giaVe;
 	int _trangThai;
 
 public:
 	Flight();
 	Flight(const Flight &);
-	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double giaVe, int ngay, int thang, int nam, int trangThai);
+	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double giaVe, int ngay, int thang, int nam, int gio, int phut, int trangThai);
 	~Flight();
 
 	string GetMaChuyenBay() const;
@@ -33,6 +35,8 @@ public:
 	int GetNgay() const;
 	int GetThang() const;
 	int GetNam() const;
+	int GetGio() const;
+	int GetPhut() const;
 	int GetTrangThai() const;
 
 	void SetMaChuyenBay(const string &title);
@@ -44,6 +48,8 @@ public:
 	void SetNgay(int);
 	void SetThang(int);
 	void SetNam(int);
+	void SetGio(int);
+	void SetPhut(int);
 	void SetTrangThai(int);
 
 	string GetKey();

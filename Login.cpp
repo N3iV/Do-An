@@ -57,8 +57,14 @@ void Login::dangNhap()
     while (1)
     {
 
-        cout << "Nhap tai khoan va mat khau.\nEmail:";
-        cin >> taiKhoanTmp;
+        cout << "Nhap tai khoan va mat khau.";
+        while (1)
+        {
+            cout << "\nEmail:";
+            getline(cin, taiKhoanTmp);
+            if (!IsEmpty(taiKhoanTmp))
+                break;
+        }
         int userID = checkFile(taiKhoanTmp, USER_DATA_PATH);
         if (userID != 0)
         {
@@ -78,7 +84,7 @@ void Login::dangNhap()
             }
             else
             {
-                cout << "Sai mat khau!\n"
+                cout << "\nSai mat khau!\n"
                      << endl;
                 system("pause");
                 dangNhap();
@@ -86,7 +92,7 @@ void Login::dangNhap()
         }
         else
         {
-            cout << "Ten dang nhap khong dung! \n"
+            cout << "\nTen dang nhap khong dung! \n"
                  << endl;
             system("pause");
             dangNhap();
