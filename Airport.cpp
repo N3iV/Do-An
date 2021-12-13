@@ -189,7 +189,7 @@ void Airport::Show(int option)
 	for (int i = 0; i < tmp.size(); ++i)
 	{
 		TextColor(SHOW_COLOR);
-		cout << "\n " << i + 1; // NAM
+		cout << "\n " <<setw(3)<<left<< i + 1; 
 		TextColor(7);
 		tmp[i]->Output();
 	}
