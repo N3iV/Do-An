@@ -336,12 +336,11 @@ void Flight::Input()
 	}
 	while (1)
 	{
-
 		cout << "\nNgay bay (dd/mm/yyyy, hh:mimi): ";
 		while (1)
 		{
 			cout << "\nNhap ngay: ";
-			cin >>setw(2)>> _ngay;
+			cin >> _ngay;
 			if (ValidateDay(_ngay))
 				break;
 			cout << "\nNgay nhap khong hop le !";
@@ -349,7 +348,7 @@ void Flight::Input()
 		while (1)
 		{
 			cout << "Nhap thang: ";
-			cin >>setw(2)>> _thang;
+			cin >> _thang;
 			if (ValidateMonth(_thang))
 				break;
 			cout << "\nThang nhap khong hop le !";
@@ -370,6 +369,14 @@ void Flight::Input()
 			if (_gio < 24)
 				break;
 			cout << "\nGio khong hop le!";
+		}
+		while (1)
+		{
+			cout << "\nNhap phut: ";
+			cin >> _phut;
+			if (_phut < 60)
+				break;
+			cout << "\nphut khong hop le!";
 		}
 
 		if (CheckDay(_ngay, _thang, _nam, _gio))
@@ -399,8 +406,8 @@ void Flight::Output()
 	// NAM
 	TextColor(SHOW_COLOR);
 	string tt = CheckDay(_ngay, _thang, _nam, _gio) ? "Sap khoi hanh" : "Da bay";
-	// string tt = _trangThai == 1 ? "Sap khoi hanh" : "Da bay";
-	cout << "  |   " << setw(9) << left << _maHieu
+	string time = to_string(_ngay) + "/" + to_string(_thang) + "/" + to_string(_nam) + ", " + to_string(_gio) + ":" + to_string(_phut);
+	cout << "|   " << setw(9) << left << _maHieu
 		 << "|        " << setw(11) << _maChuyenBay
 		 << "|     "
 		 << setw(12) << _noiDen
@@ -409,9 +416,9 @@ void Flight::Output()
 
 		 << "|  "
 		 << setw(12) << FormatISFC()
-		 << "|     " << _giaVe << "$"
-		 << "|      " << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut
-		 << "|        " << tt;
+		 << "|       " << setw(11) << _giaVe
+		 << "|  " << setw(19) << time
+		 << "|     " << setw(8) << tt;
 }
 void Flight::OutputMainInfo()
 {
@@ -421,10 +428,10 @@ void Flight::OutputMainInfo()
 			 << "|   "
 			 << setw(10) << _noiDen
 			 << "|   "
-			 << setw(9) << _noiDi
-			 << "|   "  
-			 << setw(3) <<_giaVe << "$     "
-			 << "|  " 
+			 << setw(10) << _noiDi
+			 << "|     "
+			 << setw(9) << _giaVe 
+			 << "|  "
 			 << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut;
 		TextColor(7);
 	}

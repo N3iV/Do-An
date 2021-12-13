@@ -189,46 +189,57 @@ void Airport::Show(int option)
 	for (int i = 0; i < tmp.size(); ++i)
 	{
 		TextColor(SHOW_COLOR);
-		cout << "\n " <<setw(3)<<left<< i + 1; 
+		cout << "\n " << setw(3) << left << i + 1;
 		TextColor(7);
 		tmp[i]->Output();
 	}
 }
 void Airport::ShowMainInfo(int option)
-{
+{   
+	int i;
 	LoadDataFromFile(option);
 	vector<AirportSystem *> tmp;
 	switch (option)
-	{	case 0:
-		{
-			vekhung(50,2,10,75);
-	        gotoxy(72,1);
-			cout<<"======= Danh sach chuyen bay ========";
-			gotoxy(53,3);
-			cout<<"Ma ISFC-9   |   Noi den   |   Noi di   |   Gia ve   |  Thoi gian";
-			tmp = _fl;
-			break;
-		}
-	    case 1:
-		{
-			TextColor(SHOW_COLOR);
-	        vekhung(50,2,10,30);
-	        gotoxy(53,1);
-	        cout<<"=== danh sach may  bay ===";
-	        gotoxy(53,3);
-	        cout<<"Ma hieu   |   loai may bay";
-		    tmp = _pl;
-			break;
-		}
-		default:
-		{   
-			tmp = _bt;
-			break;
-		}
-	}	
-	for (int i = 0; i < tmp.size(); ++i)
 	{
-		gotoxy(53,4+i);
+	case 0:
+	{
+		TextColor(SHOW_COLOR);
+
+		tmp = _fl;
+		int maxKhung = tmp.size();
+		vekhung(50, 2, maxKhung +1, 78);
+		gotoxy(72, 1);
+		cout << "======= Danh sach chuyen bay ========";
+		gotoxy(53, 3);
+		cout << "Ma ISFC-9   |   Noi den   |   Noi di    |   Gia ve($)  |  Thoi gian";
+		TextColor(7);
+
+		break;
+	}
+	case 1:
+	{
+		TextColor(SHOW_COLOR);
+		tmp = _pl;
+		int maxKhung = tmp.size();
+
+		vekhung(50, 2, maxKhung +1, 30);
+		gotoxy(53, 1);
+		cout << "=== danh sach may  bay ===";
+		gotoxy(53, 3);
+		cout << "Ma hieu   |   loai may bay";
+		TextColor(7);
+
+		break;
+	}
+	default:
+	{
+		tmp = _bt;
+		break;
+	}
+	}
+	for (i = 0; i < tmp.size(); ++i)
+	{
+		gotoxy(53, 4 + i);
 		tmp[i]->OutputMainInfo();
 	}
 }

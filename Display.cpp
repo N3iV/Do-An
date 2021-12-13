@@ -79,7 +79,7 @@ void Display::ShowOptionMenu()
 	cout << setw(52) << right << "============= HIEN THI THONG TIN =============";
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
-	cout << "    Chuyen bay bay    ";
+	cout << "      Chuyen bay      ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 2 * STEP_Y);
 	cout << "        May bay       ";
@@ -143,8 +143,8 @@ void Display::ControlShowOption()
 				{
 					cout << "                           ========= DANH SACH CHUYEN BAY =========                          " << endl;
 					TextColor(SHOW_COLOR);
-					cout << "STT |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-					cout << "=======================================================================================================";
+					cout << "STT |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
+					cout << "========================================================================================================================================================";
 					break;
 				}
 
@@ -483,7 +483,7 @@ void Display::ControlSearchOption()
 	}
 }
 
-// ======== BORROW BOOKS OPTION ========= //
+// ========Buy Ticket ========= //
 void Display::ControlBuyTicketOption()
 {
 	system("cls");
@@ -497,12 +497,12 @@ void Display::ControlBuyTicketOption()
 	_getch();
 }
 
-// ======== RETURN BOOKS OPTION ========= //
+// ========Cancel Ticket ========= //
 void Display::ControlCancelTicketOption()
 {
 	system("cls");
 	TextColor(TITLE_COLOR);
-	gotoxy(2, 2);
+	gotoxy(2, 1);
 	cout << "======== HUY VE ========";
 	Airport aport;
 	aport.CancelTickets();

@@ -73,7 +73,6 @@ void BuyTicket::SetUserCode(const string &UserCode)
 void BuyTicket::SetKey(const string &ma)
 {
 	_MaISFC = ma;
-	cout << _MaISFC;
 }
 
 bool BuyTicket::CheckID(const string &ID)
@@ -109,18 +108,6 @@ bool BuyTicket::CheckUserCode(const string &UserCode)
 }
 void BuyTicket::Input()
 {
-
-	// while (1)
-	// {
-	// 	cout << "\nNgay mua (dd/mm/yyyy): ";
-	// 	cin >> date;
-	// 	// if ()
-	// 	// 	break;
-	// 	// cout << "\nNgay nhap khong hop le !";
-	// 	if (date.validityCheck_Fix())
-	// 		break;
-	// 	cout << "\nVui long nhap ngay hop le va lon hon hoac bang ngay hien tai!!";
-	// }
 
 	while (1)
 	{
@@ -167,14 +154,11 @@ void BuyTicket::OutputMainInfo()
 	TextColor(SHOW_COLOR);
 	cout
 		<< "|   " << setw(17) << _Ten
-		<< "|      " << setw(9) << _GioiTinh
-
-		;
+		<< "|      " << setw(9) << _GioiTinh;
 }
 
 void BuyTicket::InputFile(ifstream &input)
 {
-	// input >> date;
 	getline(input, _MaISFC);
 	getline(input, _Ten);
 	getline(input, _GioiTinh);
@@ -189,8 +173,6 @@ void BuyTicket::OutputFile(ofstream &out)
 	out << _ID << endl;
 	out << _MaKhachHang << endl;
 	out << "" << endl;
-
-	// out << date << endl;
 }
 
 BuyTicket &BuyTicket::operator=(const BuyTicket &BuyTicket)
@@ -209,6 +191,5 @@ ostream &operator<<(ostream &os, const BuyTicket &BuyTicket)
 	os << BuyTicket._ID << endl;
 	os << BuyTicket._MaKhachHang << endl;
 	os << BuyTicket._MaISFC << endl;
-	// os << BuyTicket.date << endl;
 	return os;
 }
