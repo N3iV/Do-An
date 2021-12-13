@@ -370,6 +370,14 @@ void Flight::Input()
 				break;
 			cout << "\nGio khong hop le!";
 		}
+		while (1)
+		{
+			cout << "\nNhap phut: ";
+			cin >> _phut;
+			if (_phut < 60)
+				break;
+			cout << "\nphut khong hop le!";
+		}
 
 		if (CheckDay(_ngay, _thang, _nam, _gio))
 		{
@@ -399,7 +407,6 @@ void Flight::Output()
 	TextColor(SHOW_COLOR);
 	string tt = CheckDay(_ngay, _thang, _nam, _gio) ? "Sap khoi hanh" : "Da bay";
 	string time = to_string(_ngay) + "/" + to_string(_thang) + "/" + to_string(_nam) + ", " + to_string(_gio) + ":" + to_string(_phut);
-	// string tt = _trangThai == 1 ? "Sap khoi hanh" : "Da bay";
 	cout << "|   " << setw(9) << left << _maHieu
 		 << "|        " << setw(11) << _maChuyenBay
 		 << "|     "
@@ -417,13 +424,15 @@ void Flight::OutputMainInfo()
 {
 	if (CheckDay(_ngay, _thang, _nam, _gio))
 	{
-		cout << "|        " << left << setw(11) << _ISFC
-			 << "|     "
-			 << setw(12) << _noiDen
-			 << "|     "
-			 << setw(11) << _noiDi
-			 << "|     " << _giaVe << "$"
-			 << "|      " << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut;
+		cout << left << setw(12) << setfill(' ') << _ISFC
+			 << "|   "
+			 << setw(10) << _noiDen
+			 << "|   "
+			 << setw(9) << _noiDi
+			 << "|   "
+			 << setw(3) << _giaVe << "$     "
+			 << "|  "
+			 << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut;
 		TextColor(7);
 	}
 }
