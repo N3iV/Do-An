@@ -170,6 +170,7 @@ ostream &operator<<(ostream &os, const Plane &plane)
 	return os;
 }
 
-bool operator==(const Plane &r1, const Plane &r2)
+bool operator==(const Plane &pl1, const Plane &pl2)
 {
+	return ToLower(pl1._maHieu) == ToLower(pl2._maHieu) && ToLower(pl1._loaiMB) == ToLower(pl2._loaiMB) && pl1._code == pl2._code;
 }

@@ -359,7 +359,7 @@ void Flight::Input()
 	while (1)
 	{
 
-		cout << "\nNgay mua (dd/mm/yyyy): ";
+		cout << "\nNgay mua (dd/mm/yyyy, hh:mimi): ";
 		while (1)
 		{
 			cout << "\nNhap ngay: ";
@@ -393,19 +393,13 @@ void Flight::Input()
 				break;
 			cout << "\nGio khong hop le!";
 		}
-		while (1)
-		{
-			cout << "\nNhap phut: ";
-			cin >> _phut;
-			if (_phut < 60)
-				break;
-			cout << "\nPhut khong hop le!";
-		}
+
 		if (CheckDay(_ngay, _thang, _nam, _gio))
 		{
 			_trangThai = 1;
 			break;
 		}
+
 		cout << "\nVui long nhap ngay lon hon ngay hien tai!";
 	}
 
@@ -482,10 +476,10 @@ void Flight::OutputFile(ofstream &out)
 	out << _noiDi << endl;
 	out << _ISFC << endl;
 	out << _giaVe << endl;
-	out << _ngay << endl;
-	out << _thang << endl;
-	out << _nam << endl;
-	out << _gio << endl;
+	out << _ngay << "\t";
+	out << _thang << "\t";
+	out << _nam << "\t";
+	out << _gio << "\t";
 	out << _phut << endl;
 	out << _trangThai << endl;
 	out.clear();
@@ -514,10 +508,10 @@ ostream &operator<<(ostream &os, const Flight &Flight)
 	os << Flight._noiDi << endl;
 	os << Flight._ISFC << endl;
 	os << Flight._giaVe << endl;
-	os << Flight._ngay << endl;
-	os << Flight._thang << endl;
-	os << Flight._nam << endl;
-	os << Flight._gio << endl;
+	os << Flight._ngay << "\t";
+	os << Flight._thang << "\t";
+	os << Flight._nam << "\t";
+	os << Flight._gio << "\t";
 	os << Flight._phut << endl;
 	os << Flight._trangThai << endl;
 	return os;
