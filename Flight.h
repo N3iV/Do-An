@@ -23,7 +23,7 @@ private:
 public:
 	Flight();
 	Flight(const Flight &);
-	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double giaVe, int ngay, int thang, int nam, int gio, int phut, int trangThai);
+	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, const double &giaVe, const int &ngay, const int &thang, const int &nam, const int &gio, const int &phut, const int &trangThai);
 	~Flight();
 
 	string GetMaChuyenBay() const;
@@ -44,13 +44,13 @@ public:
 	void SetNoiDen(const string &noiDen);
 	void SetNoiDi(const string &noiDi);
 	void SetISFC(const string &ISFC);
-	void SetGia(double price);
-	void SetNgay(int);
-	void SetThang(int);
-	void SetNam(int);
-	void SetGio(int);
-	void SetPhut(int);
-	void SetTrangThai(int);
+	void SetGia(const double &price);
+	void SetNgay(const int &);
+	void SetThang(const int &);
+	void SetNam(const int &);
+	void SetGio(const int &);
+	void SetPhut(const int &);
+	void SetTrangThai(const int &);
 
 	string GetKey();
 	void SetKey(const string &);
@@ -61,7 +61,7 @@ public:
 	bool ValidateYear(int nam);
 	bool ValidateMonth(int thang);
 	bool ValidateDay(int ngay);
-	bool CheckDay(int ngay, int thang, int nam);
+	bool CheckDay(int ngay, int thang, int nam, int gio);
 	string FormatISFC() const;
 	//*----------------------*//
 

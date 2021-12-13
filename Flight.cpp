@@ -36,7 +36,7 @@ Flight::Flight(const Flight &Flight)
 	_nam = Flight._nam;
 	_trangThai = Flight._trangThai;
 }
-Flight::Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double giaVe, int ngay, int thang, int nam, int gio, int phut, int trangThai)
+Flight::Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, const double &giaVe, const int &ngay, const int &thang, const int &nam, const int &gio, const int &phut, const int &trangThai)
 {
 	_maChuyenBay = maChuyenBay;
 	_noiDen = noiDen;
@@ -140,26 +140,39 @@ void Flight::SetISFC(const string &ISFC)
 	if (CheckFC(ISFC))
 		_ISFC = ISFC;
 }
-void Flight::SetGia(double giaVe)
+void Flight::SetGia(const double &giaVe)
 {
 	if (giaVe > 0)
 		_giaVe = giaVe;
 }
-void Flight::SetNgay(int ngay)
+void Flight::SetNgay(const int &ngay)
 {
-	_ngay = ngay;
+	if (ValidateDay(_ngay))
+		_ngay = ngay;
 }
-void Flight::SetThang(int thang)
+void Flight::SetThang(const int &thang)
 {
-	_thang = thang;
+	if (ValidateMonth(_thang))
+		_thang = thang;
 }
-void Flight::SetNam(int nam)
+void Flight::SetNam(const int &nam)
 {
-	_nam = nam;
+	if (ValidateYear(_nam))
+		_nam = nam;
 }
-void Flight::SetTrangThai(int trangThai)
+void Flight::SetTrangThai(const int &trangThai)
 {
 	_trangThai = trangThai;
+}
+void Flight::SetGio(const int &gio)
+{
+	if (_gio < 24)
+		_gio = gio;
+}
+void Flight::SetPhut(const int &phut)
+{
+	if (_phut < 60)
+		_phut = phut;
 }
 
 bool Flight::CheckFC(const string &ISFC)
@@ -288,18 +301,24 @@ bool Flight::ValidateDay(int ngay)
 	}
 	return check;
 }
-bool Flight::CheckDay(int ngay, int thang, int nam)
+bool Flight::CheckDay(int ngay, int thang, int nam, int gio)
 {
 	tm *crt = currentTime();
-	int yearHT = crt->tm_year + 1900; // tm_year cchi tra ve 120
-	int monthHT = crt->tm_mon + 1;
-	int dayHT = crt->tm_mday;
-	if (nam >= yearHT)
-		return true;
-	else if (ngay >= dayHT && thang >= monthHT)
+	int currentYear = crt->tm_year + 1900; // tm_year cchi tra ve 120
+	int currentMonth = crt->tm_mon + 1;
+	int currentDay = crt->tm_mday;
+	int currentHour = crt->tm_hour;
+	int currentMinute = crt->tm_min;
+	if (nam > currentYear || nam == currentYear && thang > currentMonth || thang == currentMonth && ngay > currentDay || ngay == currentDay && gio > currentHour)
 	{
 		return true;
 	}
+	// if (nam >= currentYear)
+	// 	return true;
+	// else if (ngay >= currentDay && thang >= currentMonth)
+	// {
+	// 	return true;
+	// }
 	return false;
 }
 // Validate date
@@ -340,19 +359,19 @@ void Flight::Input()
 	while (1)
 	{
 
-		cout << "\nNgay mua (dd/mm/yyyy): ";
+		cout << "\nNgay bay (dd/mm/yyyy, hh:mimi): ";
 		while (1)
 		{
 			cout << "\nNhap ngay: ";
-			cin >> _ngay;
+			cin >>setw(2)>> _ngay;
 			if (ValidateDay(_ngay))
 				break;
 			cout << "\nNgay nhap khong hop le !";
 		}
 		while (1)
 		{
-			cout << "\nNhap thang: ";
-			cin >> _thang;
+			cout << "Nhap thang: ";
+			cin >>setw(2)>> _thang;
 			if (ValidateMonth(_thang))
 				break;
 			cout << "\nThang nhap khong hop le !";
@@ -366,29 +385,24 @@ void Flight::Input()
 				break;
 			cout << "\nNam nhap khong hop le !";
 		}
-		if (CheckDay(_ngay, _thang, _nam))
+		while (1)
+		{
+			cout << "\nNhap gio: ";
+			cin >> _gio;
+			if (_gio < 24)
+				break;
+			cout << "\nGio khong hop le!";
+		}
+
+		if (CheckDay(_ngay, _thang, _nam, _gio))
 		{
 			_trangThai = 1;
 			break;
 		}
+
 		cout << "\nVui long nhap ngay lon hon ngay hien tai!";
 	}
-	while (1)
-	{
-		cout << "\nNhap gio: ";
-		cin >> _gio;
-		if (_gio < 24)
-			break;
-		cout << "\nGio khong hop le!";
-	}
-	while (1)
-	{
-		cout << "\nNhap phut: ";
-		cin >> _phut;
-		if (_phut < 60)
-			break;
-		cout << "\nPhut khong hop le!";
-	}
+
 	while (1)
 	{
 		cout << "\nNhap gia ve: ";
@@ -462,10 +476,10 @@ void Flight::OutputFile(ofstream &out)
 	out << _noiDi << endl;
 	out << _ISFC << endl;
 	out << _giaVe << endl;
-	out << _ngay << endl;
-	out << _thang << endl;
-	out << _nam << endl;
-	out << _gio << endl;
+	out << _ngay << "\t";
+	out << _thang << "\t";
+	out << _nam << "\t";
+	out << _gio << "\t";
 	out << _phut << endl;
 	out << _trangThai << endl;
 	out.clear();
@@ -494,10 +508,10 @@ ostream &operator<<(ostream &os, const Flight &Flight)
 	os << Flight._noiDi << endl;
 	os << Flight._ISFC << endl;
 	os << Flight._giaVe << endl;
-	os << Flight._ngay << endl;
-	os << Flight._thang << endl;
-	os << Flight._nam << endl;
-	os << Flight._gio << endl;
+	os << Flight._ngay << "\t";
+	os << Flight._thang << "\t";
+	os << Flight._nam << "\t";
+	os << Flight._gio << "\t";
 	os << Flight._phut << endl;
 	os << Flight._trangThai << endl;
 	return os;

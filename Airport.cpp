@@ -198,7 +198,12 @@ void Airport::ShowMainInfo(int option)
 {
 	LoadDataFromFile(option);
 	vector<AirportSystem *> tmp;
-
+	TextColor(SHOW_COLOR);
+	vekhung(50,2,10,30);
+	gotoxy(53,1);
+	cout<<"=== danh sach may  bay ===";
+	gotoxy(53,3);
+	cout<<"Ma hieu   |   loai may bay";
 	if (option == 0)
 		tmp = _fl;
 	else if (option == 1)
@@ -207,11 +212,7 @@ void Airport::ShowMainInfo(int option)
 		tmp = _bt;
 	for (int i = 0; i < tmp.size(); ++i)
 	{
-		TextColor(SHOW_COLOR);
-		cout << "\n";
-		TextColor(SHOW_COLOR);
-		vekhung(50,2,10,25);
-        gotoxy(52,3);
+		gotoxy(53,4+i);
 		tmp[i]->OutputMainInfo();
 	}
 }
