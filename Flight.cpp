@@ -336,12 +336,11 @@ void Flight::Input()
 	}
 	while (1)
 	{
-
 		cout << "\nNgay bay (dd/mm/yyyy, hh:mimi): ";
 		while (1)
 		{
 			cout << "\nNhap ngay: ";
-			cin >>setw(2)>> _ngay;
+			cin >> _ngay;
 			if (ValidateDay(_ngay))
 				break;
 			cout << "\nNgay nhap khong hop le !";
@@ -349,7 +348,7 @@ void Flight::Input()
 		while (1)
 		{
 			cout << "Nhap thang: ";
-			cin >>setw(2)>> _thang;
+			cin >> _thang;
 			if (ValidateMonth(_thang))
 				break;
 			cout << "\nThang nhap khong hop le !";
@@ -399,8 +398,9 @@ void Flight::Output()
 	// NAM
 	TextColor(SHOW_COLOR);
 	string tt = CheckDay(_ngay, _thang, _nam, _gio) ? "Sap khoi hanh" : "Da bay";
+	string time = to_string(_ngay) + "/" + to_string(_thang) + "/" + to_string(_nam) + ", " + to_string(_gio) + ":" + to_string(_phut);
 	// string tt = _trangThai == 1 ? "Sap khoi hanh" : "Da bay";
-	cout << "  |   " << setw(9) << left << _maHieu
+	cout << "|   " << setw(9) << left << _maHieu
 		 << "|        " << setw(11) << _maChuyenBay
 		 << "|     "
 		 << setw(12) << _noiDen
@@ -409,9 +409,9 @@ void Flight::Output()
 
 		 << "|  "
 		 << setw(12) << FormatISFC()
-		 << "|     " << _giaVe << "$"
-		 << "|      " << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut
-		 << "|        " << tt;
+		 << "|       " << setw(11) << _giaVe
+		 << "|  " << setw(19) << time
+		 << "|     " << setw(8) << tt;
 }
 void Flight::OutputMainInfo()
 {
