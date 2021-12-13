@@ -199,7 +199,7 @@ void Flight::Output()
 {
 	// NAM
 	TextColor(SHOW_COLOR);
-	cout << "  |   " << setw(9) << left << _maHieu
+	cout << "|   " << setw(9) << left << _maHieu
 		 << "|        " << setw(11) << _maChuyenBay
 		 << "|     "
 		 << setw(12) << _noiDen

@@ -125,7 +125,7 @@ void Plane::Input()
 void Plane::Output()
 {
 	TextColor(SHOW_COLOR);
-	cout << "  |     " << setw(12) << left << _maHieu
+	cout << "|     " << setw(12) << left << _maHieu
 		 << "|   "
 		 << setw(11) << _loaiMB
 		 << "|     "

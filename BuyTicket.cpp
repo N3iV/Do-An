@@ -158,7 +158,7 @@ void BuyTicket::Output()
 {
 
 	TextColor(SHOW_COLOR);
-	cout << "  |   " << setw(16) << left << _MaISFC
+	cout << "|   " << setw(16) << left << _MaISFC
 		 << "|   " << setw(17) << _Ten
 		 << "|      " << setw(9) << _GioiTinh
 		 << "|     " << setw(9) << _ID
