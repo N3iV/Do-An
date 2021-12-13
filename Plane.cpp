@@ -133,11 +133,9 @@ void Plane::Output()
 }
 void Plane::OutputMainInfo()
 {
-
-	cout << "                           |     " << setw(12) << left << _maHieu
-		 << "|   "
-		 << setw(11) << _loaiMB
-		 << "|     ";
+	cout <<"  "<<setw(7)<< left << _maHieu
+		 << "|  "
+		 << setw(11) << _loaiMB;
 	TextColor(7);
 }
 void Plane::InputFile(ifstream &input)

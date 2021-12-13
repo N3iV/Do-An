@@ -53,7 +53,8 @@ int main()
 	{
 		createDataFile();
 		Display display;
-		display.MainLogin();
+		// display.MainLogin();
+		display.DisplayMain();
 	}
 	catch (const char *error) // chan bat và xử lí ngoại lệ
 	{

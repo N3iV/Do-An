@@ -209,8 +209,9 @@ void Airport::ShowMainInfo(int option)
 	{
 		TextColor(SHOW_COLOR);
 		cout << "\n";
-		TextColor(7);
-
+		TextColor(SHOW_COLOR);
+		vekhung(50,2,10,25);
+        gotoxy(52,3);
 		tmp[i]->OutputMainInfo();
 	}
 }
