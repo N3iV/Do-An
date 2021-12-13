@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    "*.ejs": "html",
     "iostream": "cpp",
     "new": "cpp",
     "*.tcc": "cpp",
@@ -13,9 +14,10 @@
     "string_view": "cpp",
     "initializer_list": "cpp",
     "ranges": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "ctime": "cpp"
   },
   "code-runner.executorMap": {
-    "cpp": "cd $dir && g++ -std=c++14 *.cpp  -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-}
+    "cpp": "cd $dir && g++ -std=c++14 *.cpp  -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  }
 }

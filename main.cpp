@@ -23,31 +23,31 @@ void createDataFile()
 	dataFile.open(PASSWORD_DATA_PATH, ios::app);
 	dataFile.close();
 }
-// void loading()
-// {
-// 	char a = 179, b = 219;
+void loading()
+{
+	char a = 179, b = 219;
 
-// 	cout << "\t\t\t"
-// 		 << "Dang tai...\n";
-// 	cout << "\t\t\t";
-// 	for (int i = 0; i < 20; ++i)
-// 	{
-// 		cout << a;
-// 	}
-// 	cout << "\r";
-// 	cout << "\t\t\t";
-// 	for (int i = 0; i < 20; ++i)
-// 	{
-// 		cout << b;
-// 		Sleep(100);
-// 	}
-// 	cout << "\n";
-// }
+	cout << "\t\t\t"
+		 << "Dang tai...\n";
+	cout << "\t\t\t";
+	for (int i = 0; i < 20; ++i)
+	{
+		cout << a;
+	}
+	cout << "\r";
+	cout << "\t\t\t";
+	for (int i = 0; i < 20; ++i)
+	{
+		cout << b;
+		Sleep(100);
+	}
+	cout << "\n";
+}
 
 int main()
 {
 
-	// // loading();
+	// loading();
 	// Sleep(200);
 	try /// dung de bat cac ngoai le
 	{
@@ -65,5 +65,6 @@ int main()
 	}
 	// Date d;
 	// cin >> d;
+
 	// cout << d;
 }

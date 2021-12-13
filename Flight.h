@@ -12,13 +12,18 @@ private:
 	string _noiDen;
 	string _noiDi;
 	string _ISFC;
-	Date _ngayKhoiHanh;
-	double _price;
+	int _ngay;
+	int _thang;
+	int _nam;
+	int _gio;
+	int _phut;
+	double _giaVe;
+	int _trangThai;
 
 public:
 	Flight();
 	Flight(const Flight &);
-	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double price);
+	Flight(const string &maChuyenBay, const string &noiDen, const string &noiDi, const string &ISFC, double giaVe, int ngay, int thang, int nam, int gio, int phut, int trangThai);
 	~Flight();
 
 	string GetMaChuyenBay() const;
@@ -26,21 +31,45 @@ public:
 	string GetNoiDen() const;
 	string GetNoiDi() const;
 	string GetISFC() const;
-	double GetPrice() const;
+	double GetGia() const;
+	int GetNgay() const;
+	int GetThang() const;
+	int GetNam() const;
+	int GetGio() const;
+	int GetPhut() const;
+	int GetTrangThai() const;
 
 	void SetMaChuyenBay(const string &title);
 	void SetMaHieu(const string &title);
 	void SetNoiDen(const string &noiDen);
-	void SetNoiDi(const string &pub);
+	void SetNoiDi(const string &noiDi);
 	void SetISFC(const string &ISFC);
-	void SetPrice(double price);
+	void SetGia(double price);
+	void SetNgay(int);
+	void SetThang(int);
+	void SetNam(int);
+	void SetGio(int);
+	void SetPhut(int);
+	void SetTrangThai(int);
 
-	static bool CheckFC(const string &ISFC);
 	string GetKey();
 	void SetKey(const string &);
+
+	//* ---- VALIDATE ---- *//
+	static bool CheckFC(const string &ISFC);
+	bool isLeapYear();
+	bool ValidateYear(int nam);
+	bool ValidateMonth(int thang);
+	bool ValidateDay(int ngay);
+	bool CheckDay(int ngay, int thang, int nam);
+	string FormatISFC() const;
+	//*----------------------*//
+
 	void Input();
 	void Output();
-	string FormatISFC() const;
+	void OutputMainInfo();
+
+	// *---------------------------*//
 
 	void InputFile(ifstream &input);
 	void OutputFile(ofstream &path);

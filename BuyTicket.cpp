@@ -1,7 +1,9 @@
 #include "BuyTicket.h"
 #include <iomanip>
 #include "Airport.h"
+#include <ctime>
 using namespace std;
+
 BuyTicket::BuyTicket()
 {
 	_MaKhachHang = "";
@@ -42,11 +44,7 @@ string BuyTicket::GetMaISFC() const
 {
 	return _MaISFC;
 }
-void BuyTicket::SetDate(Date day)
-{
-	if (day.validityCheck_Fix())
-		date = day;
-}
+
 void BuyTicket::SetName(const string &Name)
 {
 	if (!IsEmpty(Name))
@@ -109,7 +107,6 @@ bool BuyTicket::CheckUserCode(const string &UserCode)
 		}
 	return true;
 }
-
 void BuyTicket::Input()
 {
 
@@ -163,6 +160,16 @@ void BuyTicket::Output()
 		 << "|      " << setw(9) << _GioiTinh
 		 << "|     " << setw(9) << _ID
 		 << "|     " << _MaKhachHang;
+}
+void BuyTicket::OutputMainInfo()
+{
+
+	TextColor(SHOW_COLOR);
+	cout
+		<< "|   " << setw(17) << _Ten
+		<< "|      " << setw(9) << _GioiTinh
+
+		;
 }
 
 void BuyTicket::InputFile(ifstream &input)

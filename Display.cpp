@@ -411,7 +411,7 @@ void Display::ControlSearchOption()
 					system("cls");
 					ShowConsoleCursor(true);
 					TextColor(TITLE_COLOR);
-					cout <<setw(43)<< "========== TIM KIEM MAY BAY ==========" << endl;
+					cout << setw(43) << "========== TIM KIEM MAY BAY ==========" << endl;
 					TextColor(10);
 					cout << "Tim kiem bang (0 - Loai may bay, 1 - Ma hieu) >> ";
 					TextColor(7);
@@ -443,7 +443,7 @@ void Display::ControlSearchOption()
 					system("cls");
 					ShowConsoleCursor(true);
 					TextColor(TITLE_COLOR);
-					cout <<setw(38)<< "========== TIM KIEM VE ==========" << endl;
+					cout << setw(38) << "========== TIM KIEM VE ==========" << endl;
 					TextColor(11);
 					Airport aport;
 					int found = aport.Search(option, 0);
@@ -453,7 +453,7 @@ void Display::ControlSearchOption()
 						gotoxy(33, 5);
 						cout << "========== TIM THAY ==========" << endl;
 						cout << "  |   Ma chuyen bay   |   Ten khach hang   |   Gioi tinh   |     CMND     |   Ma khach hang" << endl;
-						cout << "============================================================================================="<<endl;
+						cout << "=============================================================================================" << endl;
 						aport.GetTicket(found)->Output();
 					}
 					else
@@ -486,7 +486,7 @@ void Display::ControlBuyTicketOption()
 {
 	system("cls");
 	TextColor(TITLE_COLOR);
-	gotoxy(2,1);
+	gotoxy(2, 1);
 	cout << "======== DAT VE ========";
 	Airport aport;
 	aport.BuyTickets();
@@ -500,7 +500,7 @@ void Display::ControlCancelTicketOption()
 {
 	system("cls");
 	TextColor(TITLE_COLOR);
-	gotoxy(2,2);
+	gotoxy(2, 2);
 	cout << "======== HUY VE ========";
 	Airport aport;
 	aport.CancelTickets();
@@ -508,22 +508,6 @@ void Display::ControlCancelTicketOption()
 	cout << "\n<== Nhan phim bat ky de tiep tuc ==>" << endl;
 	_getch();
 }
-
-// ======== OVERDUE LIST OPTION ========= //
-// void Display::ControlOverdueListOption()
-// {
-// 	system("cls");
-// 	gotoxy(TITLE_X - 2, TITLE_Y);
-// 	TextColor(TITLE_COLOR);
-// 	ShowConsoleCursor(true);
-// 	cout << "======== He Thong Quan Ly Thu Vien - Danh sach qua han muon sach ========";
-// 	TextColor(7);
-// 	Airport aport;
-// 	aport.OverdueList();
-// 	TextColor(12);
-// 	cout << "\n<== Nhan phim bat ky de tiep tuc ==>" << endl;
-// 	_getch();
-// }
 
 // ======== MAIN DISPLAY ======== //
 void Display::MainMenu()
@@ -705,14 +689,14 @@ void Display::MainLogin()
 				case 1:
 				{
 					app.dangKi();
-					MainLogin();
-					return;
+					// MainLogin();
+					// return;
 				}
 				case 2:
 				{
-					isLogin = app.dangNhap();
-					MainLogin();
-					return;
+					app.dangNhap();
+					// MainLogin();
+					// return;
 				}
 				break;
 				}

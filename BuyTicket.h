@@ -12,30 +12,34 @@ private:
 	string _Ten;
 	string _MaKhachHang;
 	string _ID;
-	Date date;
+	Flight _chuyenBay;
 
 public:
 	BuyTicket();
 	BuyTicket(const string &, const string &, const string &);
 	~BuyTicket();
+
 	string GetGioiTinh() const;
 	string GetMaISFC() const;
 	string GetName() const;
 	string GetUserCode() const;
 	string GetID() const;
 	string GetKey();
+
 	void SetGioiTinh(const string &);
 	void SetMaISFC(const string &);
 	void SetName(const string &);
 	void SetUserCode(const string &);
 	void SetID(const string &);
-	void SetDate(Date date);
 	void SetKey(const string &);
+
 	static bool CheckUserCode(const string &);
 	static bool CheckID(const string &);
 
 	void Input();
 	void Output();
+	void OutputMainInfo();
+
 	string FormatUserCode() const;
 
 	void InputFile(ifstream &input);
