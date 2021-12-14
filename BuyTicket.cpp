@@ -73,7 +73,6 @@ void BuyTicket::SetUserCode(const string &UserCode)
 void BuyTicket::SetKey(const string &ma)
 {
 	_MaISFC = ma;
-	cout << _MaISFC;
 }
 
 bool BuyTicket::CheckID(const string &ID)
@@ -146,7 +145,7 @@ void BuyTicket::Output()
 	cout << "|   " << setw(16) << left << _MaISFC
 		 << "|   " << setw(17) << _Ten
 		 << "|      " << setw(9) << _GioiTinh
-		 << "|     " << setw(9) << _ID
+		 << "|  " << setw(12) << _ID
 		 << "|     " << _MaKhachHang;
 }
 void BuyTicket::OutputMainInfo()

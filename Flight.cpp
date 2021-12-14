@@ -177,10 +177,10 @@ bool Flight::CheckFC(const string &ISFC)
 		return false;
 	}
 	string check;
-	check = check + ISFC[0] + ISFC[1] + ISFC[2];
-	if (check != FLIGHT_CODE_9 && check != _FLIGHT_CODE_9)
+	check = check + ISFC[0] + ISFC[1];
+	if (check != FLIGHT_CODE_TN && check != FLIGHT_CODE_QT)
 	{
-		cerr << "\nMa ISFC-9 bat dau bang VJA hoac VNA !";
+		cerr << "\nMa ISFC-9 bat dau bang TN hoac QT !";
 		return false;
 	}
 	return true;
@@ -189,7 +189,7 @@ bool Flight::CheckFC(const string &ISFC)
 string Flight::FormatISFC() const
 {
 	string res = _ISFC;
-	res.insert(3, "-");
+	res.insert(2, "-");
 	return res;
 }
 
@@ -428,13 +428,15 @@ void Flight::OutputMainInfo()
 			 << "|   "
 			 << setw(10) << _noiDen
 			 << "|   "
-			 << setw(9) << _noiDi
-			 << "|   "
-			 << setw(3) << _giaVe << "$     "
+			 << setw(10) << _noiDi
+			 << "|     "
+			 << setw(9) << _giaVe
 			 << "|  "
 			 << _ngay << "/" << _thang << "/" << _nam << ", " << _gio << ":" << _phut;
 		TextColor(7);
 	}
+	else
+		cout.clear();
 }
 
 void Flight::InputFile(ifstream &input)

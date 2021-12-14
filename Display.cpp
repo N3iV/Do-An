@@ -79,7 +79,7 @@ void Display::ShowOptionMenu()
 	cout << setw(52) << right << "============= HIEN THI THONG TIN =============";
 	gotoxy(PIVOT_X + 1, TITLE_Y + STEP_Y);
 	TextColor(OPTION_COLOR);
-	cout << "    Chuyen bay bay    ";
+	cout << "      Chuyen bay      ";
 
 	gotoxy(PIVOT_X + 1, TITLE_Y + 2 * STEP_Y);
 	cout << "        May bay       ";
