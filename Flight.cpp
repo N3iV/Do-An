@@ -169,18 +169,28 @@ void Flight::SetPhut(const int &phut)
 bool Flight::CheckFC(const string &ISFC)
 {
 	if (IsEmpty(ISFC))
+	{
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
+	}
 
 	if (ISFC.length() != 9)
 	{
-		cerr << "\nMa ISFC gom 9 ki tu!";
+		TextColor(12);
+		cerr << "\nMa ISFC gom 9 ki tu!" << setw(20);
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
 	}
 	string check;
 	check = check + ISFC[0] + ISFC[1];
 	if (check != FLIGHT_CODE_TN && check != FLIGHT_CODE_QT)
 	{
+		TextColor(12);
 		cerr << "\nMa ISFC-9 bat dau bang TN hoac QT !";
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
 	}
 	return true;
@@ -306,7 +316,8 @@ void Flight::Input()
 
 	while (1)
 	{
-		cout << "\nNhap ma chuyen bay: ";
+		gotoxy(0, 5);
+		cout << "Nhap ma chuyen bay: ";
 		getline(cin, _maChuyenBay);
 		if (!IsEmpty(_maChuyenBay))
 			break;
@@ -314,14 +325,16 @@ void Flight::Input()
 
 	while (1)
 	{
-		cout << "\nNhap noi den:";
+		gotoxy(0, 7);
+		cout << "Nhap noi den:";
 		getline(cin, _noiDen);
 		if (!IsEmpty(_noiDen))
 			break;
 	}
 	while (1)
 	{
-		cout << "\nNhap noi di: ";
+		gotoxy(0, 9);
+		cout << "Nhap noi di: ";
 		getline(cin, _noiDi);
 		if (!IsEmpty(_noiDi))
 			break;
@@ -329,54 +342,72 @@ void Flight::Input()
 
 	while (1)
 	{
-		cout << "\nNhap ISFC-9: ";
+		TextColor(13);
+		gotoxy(0, 11);
+		cout << "Nhap ISFC-9: ";
 		getline(cin, _ISFC);
 		if (CheckFC(_ISFC))
 			break;
 	}
 	while (1)
 	{
-		cout << "\nNgay bay (dd/mm/yyyy, hh:mimi): ";
+		gotoxy(0, 13);
+		cout << "Ngay bay: (dd/mm/yyyy, hh:mimi)      ";
 		while (1)
 		{
-			cout << "\nNhap ngay: ";
+			TextColor(13);
+			gotoxy(0, 14);
+			cout << "Nhap ngay: ";
 			cin >> _ngay;
 			if (ValidateDay(_ngay))
 				break;
+			TextColor(12);
 			cout << "\nNgay nhap khong hop le !";
 		}
 		while (1)
 		{
-			cout << "Nhap thang: ";
+			TextColor(13);
+			gotoxy(13, 14);
+			cout << "/";
 			cin >> _thang;
 			if (ValidateMonth(_thang))
 				break;
+			TextColor(12);
 			cout << "\nThang nhap khong hop le !";
 		}
 		while (1)
 		{
-			cout << "\nNhap nam: ";
+			TextColor(13);
+			gotoxy(16, 14);
+			cout << "/";
 			cin >> _nam;
 
 			if (ValidateYear(_nam))
 				break;
+			TextColor(12);
 			cout << "\nNam nhap khong hop le !";
 		}
 		while (1)
 		{
-			cout << "\nNhap gio: ";
+			TextColor(13);
+			gotoxy(21, 14);
+			cout << ", ";
 			cin >> _gio;
 			if (_gio < 24)
 				break;
-			cout << "\nGio khong hop le!";
+			TextColor(12);
+			cout << "\nGio khong hop le!         ";
 		}
 		while (1)
 		{
-			cout << "\nNhap phut: ";
+			TextColor(13);
+			gotoxy(25, 14);
+			cout << ":";
 			cin >> _phut;
 			if (_phut < 60)
 				break;
-			cout << "\nphut khong hop le!";
+			TextColor(12);
+			cout << "\nphut khong hop le!        ";
 		}
 
 		if (CheckDay(_ngay, _thang, _nam, _gio))
@@ -389,15 +420,20 @@ void Flight::Input()
 
 	while (1)
 	{
-		cout << "\nNhap gia ve: ";
+		gotoxy(0, 16);
+		cout << "                                                 ";
+		gotoxy(0, 16);
+		cout << "Nhap gia ve: ";
 		cin >> _giaVe;
 		if (cin.fail())
 		{
-			cerr << "NaN - du lieu nhap phai la 1 so !";
+			TextColor(12);
+			cerr << "\nNaN - du lieu nhap phai la 1 so !";
 			exit(0);
 		}
 		if (_giaVe > 0)
 			break;
+		TextColor(12);
 		cerr << "\nGia ve phai lon hon 0 !";
 	}
 }
