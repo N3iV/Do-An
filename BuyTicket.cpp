@@ -111,7 +111,10 @@ void BuyTicket::Input()
 
 	while (1)
 	{
-		cout << "\nNhap ten Khach hang: ";
+		gotoxy(0, 5);
+		cout<<"                                              ";
+		gotoxy(0, 5);
+		cout << "Nhap ten Khach hang: ";
 		getline(cin, _Ten);
 		if (!IsEmpty(_Ten))
 			break;

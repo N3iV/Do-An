@@ -100,6 +100,7 @@ bool Plane::CheckMaMayBay(const string &maHieu)
 }
 void Plane::Input()
 {
+	TextColor(12);
 	while (1)
 	{
 		cout << "\nNhap ma hieu may bay: ";
@@ -125,7 +126,7 @@ void Plane::Input()
 void Plane::Output()
 {
 	TextColor(SHOW_COLOR);
-	cout << "|     " << setw(12) << left << _maHieu
+	cout << "|     " << setw(11) << left << _maHieu
 		 << "|   "
 		 << setw(11) << _loaiMB
 		 << "|     "

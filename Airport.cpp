@@ -207,11 +207,11 @@ void Airport::ShowMainInfo(int option)
 
 		tmp = _fl;
 		int maxKhung = tmp.size();
-		vekhung(50, 2, maxKhung + 1, 78);
+		vekhung(50, 2, maxKhung + 1, 82);
 		gotoxy(72, 1);
 		cout << "======= Danh sach chuyen bay ========";
 		gotoxy(53, 3);
-		cout << "Ma ISFC-9   |   Noi den   |   Noi di    |   Gia ve($)  |  Thoi gian";
+		cout << "Ma ISFC-9   |    Noi den    |    Noi  di    |   Gia ve($)  |  Thoi gian";
 		TextColor(7);
 
 		break;
@@ -562,9 +562,9 @@ void Airport::Edit(int option)
 		case 0:
 		{
 			TextColor(SHOW_COLOR);
-			cout << setw(61) << right << "========== TIM THAY ==========" << endl;
-			cout << "   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
-			cout << "===================================================================================================================================================" << endl;
+			cout << "\n                                                       ========== TIM THAY ==========                                                                    " << endl;
+			cout << "    Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |     Trang thai     " << endl;
+			cout << "=================================================================================================================================================" << endl;
 			_fl[found]->Output();
 			TextColor(13);
 			cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
@@ -577,6 +577,7 @@ void Airport::Edit(int option)
 			{
 			case 0:
 			{
+				system("cls");
 				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
 				_fl[found]->Input();
 				break;
@@ -634,12 +635,12 @@ void Airport::Edit(int option)
 		case 1:
 		{
 			TextColor(SHOW_COLOR);
-			cout << setw(60) << right << "========== TIM THAY ==========" << endl;
+			cout << "\n         ========== TIM THAY ==========      " << endl;
 			cout << "     Ma hieu     |     Loai     |     Code     " << endl;
 			cout << "===============================================" << endl;
 			_pl[found]->Output();
 			TextColor(3);
-			cout << "\n0-Sua Tat Ca, 1-Ma Hieu, 2-Loai, 3-Code MB, 4-So Day, 5-So Ghe >> ";
+			cout << "\n0-Sua Tat Ca, 1-Ma Hieu, 2-Loai, 3-Code MB >> ";
 			cin >> type;
 			if (cin.fail())
 				throw "Du lieu nhap khong la so";
@@ -678,7 +679,7 @@ void Airport::Edit(int option)
 				string Code;
 				while (1)
 				{
-					cout << "Nhap loai may: ";
+					cout << "Nhap code may bay: ";
 					getline(cin, Code);
 					if (Plane::CheckCode(Code))
 						break;

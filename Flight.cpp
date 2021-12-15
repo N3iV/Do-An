@@ -461,10 +461,10 @@ void Flight::OutputMainInfo()
 	if (CheckDay(_ngay, _thang, _nam, _gio))
 	{
 		cout << left << setw(12) << setfill(' ') << _ISFC
-			 << "|   "
-			 << setw(10) << _noiDen
-			 << "|   "
-			 << setw(10) << _noiDi
+			 << "|    "
+			 << setw(11) << _noiDen
+			 << "|    "
+			 << setw(11) << _noiDi
 			 << "|     "
 			 << setw(9) << _giaVe
 			 << "|  "
