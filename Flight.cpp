@@ -169,12 +169,18 @@ void Flight::SetPhut(const int &phut)
 bool Flight::CheckFC(const string &ISFC)
 {
 	if (IsEmpty(ISFC))
+	{
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
+	}
 
 	if (ISFC.length() != 9)
 	{
 		TextColor(12);
-		cerr << "\nMa ISFC gom 9 ki tu!"<<setw(20);
+		cerr << "\nMa ISFC gom 9 ki tu!" << setw(20);
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
 	}
 	string check;
@@ -183,6 +189,8 @@ bool Flight::CheckFC(const string &ISFC)
 	{
 		TextColor(12);
 		cerr << "\nMa ISFC-9 bat dau bang TN hoac QT !";
+		gotoxy(0, 11);
+		cout << "                                          ";
 		return false;
 	}
 	return true;
@@ -413,7 +421,7 @@ void Flight::Input()
 	while (1)
 	{
 		gotoxy(0, 16);
-		cout<<"                                                 ";
+		cout << "                                                 ";
 		gotoxy(0, 16);
 		cout << "Nhap gia ve: ";
 		cin >> _giaVe;

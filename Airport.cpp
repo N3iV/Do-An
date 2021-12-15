@@ -445,7 +445,7 @@ int Airport::Search(int option, int type)
 		{
 		case 0:
 		{
-			// search by title
+			// search =  ma chuyen bay
 			TextColor(13);
 			vekhung(0, 2, 1, 25);
 			gotoxy(2, 3);
@@ -479,7 +479,11 @@ int Airport::Search(int option, int type)
 					return i;
 			return NOT_FOUND;
 		}
+		default:
+			cout << "Khong hop le!";
+			break;
 		}
+		break;
 	}
 	case 1:
 	{
@@ -487,7 +491,7 @@ int Airport::Search(int option, int type)
 		{
 		case 0:
 		{
-			// search by name
+			// search = loai may bay
 			TextColor(13);
 			vekhung(0, 2, 1, 30);
 			gotoxy(2, 3);
@@ -502,7 +506,7 @@ int Airport::Search(int option, int type)
 		}
 		case 1:
 		{
-			// search by ID
+			// search = ma hieu
 			TextColor(13);
 			vekhung(0, 2, 1, 21);
 			gotoxy(2, 3);
@@ -516,9 +520,11 @@ int Airport::Search(int option, int type)
 			return NOT_FOUND;
 		}
 		default:
-			cout << "Vui long nhap lai";
+			cout << "Lua chon khong hop le!";
 			break;
+			return NOT_FOUND;
 		}
+		break;
 	}
 	default:
 	{
@@ -547,139 +553,146 @@ void Airport::Edit(int option)
 		cout << "\n========= KHONG TIM THAY TRONG DANH SACH  ==========" << endl;
 		return;
 	}
-	int type;
-	switch (option)
+	else
 	{
-	case 0:
-	{
-		TextColor(SHOW_COLOR);
-		cout << setw(61) << right << "========== TIM THAY ==========" << endl;
-		cout << "   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
-		cout << "===================================================================================================================================================" << endl;
-		_fl[found]->Output();
-		TextColor(13);
-		cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
-		cin >> type;
-		if (cin.fail())
-			throw "Du lieu nhap khong la so";
-		fflush(stdin);
-		TextColor(13);
-		switch (type)
+
+		int type;
+		switch (option)
 		{
 		case 0:
 		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			_fl[found]->Input();
+			TextColor(SHOW_COLOR);
+			cout << setw(61) << right << "========== TIM THAY ==========" << endl;
+			cout << "   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
+			cout << "===================================================================================================================================================" << endl;
+			_fl[found]->Output();
+			TextColor(13);
+			cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
+			cin >> type;
+			if (cin.fail())
+				throw "Du lieu nhap khong la so";
+			fflush(stdin);
+			TextColor(13);
+			switch (type)
+			{
+			case 0:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				_fl[found]->Input();
+				break;
+			}
+			case 1:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				cout << "Nhap ma chuyen bay: ";
+				string MaChuyenBay;
+				getline(cin, MaChuyenBay);
+				((Flight *)_fl[found])->SetMaChuyenBay(MaChuyenBay);
+				break;
+			}
+			case 2:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				cout << "Nhap noi den: ";
+				string NoiDen;
+				getline(cin, NoiDen);
+				((Flight *)_fl[found])->SetNoiDen(NoiDen);
+				break;
+			}
+			case 3:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				cout << "Nhap noi di: ";
+				string NoiDi;
+				getline(cin, NoiDi);
+				((Flight *)_fl[found])->SetNoiDi(NoiDi);
+				break;
+			}
+
+			case 4:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				string ISFC;
+				while (1)
+				{
+					cout << "Nhap ISFC: ";
+					getline(cin, ISFC);
+					if (Flight::CheckFC(ISFC))
+						break;
+				}
+				((Flight *)_fl[found])->SetISFC(ISFC);
+				break;
+			}
+			default:
+			{
+				cout << "Vui long lua chon dung!!";
+				break;
+			}
+			}
 			break;
 		}
 		case 1:
 		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			cout << "Nhap ma chuyen bay: ";
-			string MaChuyenBay;
-			getline(cin, MaChuyenBay);
-			((Flight *)_fl[found])->SetMaChuyenBay(MaChuyenBay);
-			break;
-		}
-		case 2:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			cout << "Nhap noi den: ";
-			string NoiDen;
-			getline(cin, NoiDen);
-			((Flight *)_fl[found])->SetNoiDen(NoiDen);
-			break;
-		}
-		case 3:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			cout << "Nhap noi di: ";
-			string NoiDi;
-			getline(cin, NoiDi);
-			((Flight *)_fl[found])->SetNoiDi(NoiDi);
-			break;
-		}
-
-		case 4:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			string ISFC;
-			while (1)
+			TextColor(SHOW_COLOR);
+			cout << setw(60) << right << "========== TIM THAY ==========" << endl;
+			cout << "     Ma hieu     |     Loai     |     Code     " << endl;
+			cout << "===============================================" << endl;
+			_pl[found]->Output();
+			TextColor(3);
+			cout << "\n0-Sua Tat Ca, 1-Ma Hieu, 2-Loai, 3-Code MB, 4-So Day, 5-So Ghe >> ";
+			cin >> type;
+			if (cin.fail())
+				throw "Du lieu nhap khong la so";
+			fflush(stdin);
+			TextColor(11);
+			switch (type)
 			{
-				cout << "Nhap ISFC: ";
-				getline(cin, ISFC);
-				if (Flight::CheckFC(ISFC))
-					break;
-			}
-			((Flight *)_fl[found])->SetISFC(ISFC);
-			break;
-		}
-		default:
-		{
-			cout << "Vui long lua chon dung!!";
-			break;
-		}
-		}
-		break;
-	}
-	case 1:
-	{
-		TextColor(SHOW_COLOR);
-		cout << setw(60) << right << "========== TIM THAY ==========" << endl;
-		cout << "     Ma hieu     |     Loai     |     Code     " << endl;
-		cout << "===============================================" << endl;
-		_pl[found]->Output();
-		TextColor(3);
-		cout << "\n0-Sua Tat Ca, 1-Ma Hieu, 2-Loai, 3-Code MB, 4-So Day, 5-So Ghe >> ";
-		cin >> type;
-		if (cin.fail())
-			throw "Du lieu nhap khong la so";
-		fflush(stdin);
-		TextColor(11);
-		switch (type)
-		{
-		case 0:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			_pl[found]->Input();
-			break;
-		}
-		case 1:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			cout << "Nhap ma hieu may bay: ";
-			string name;
-			getline(cin, name);
-			((Plane *)_pl[found])->SetMaHieu(name);
-			break;
-		}
-		case 2:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			cout << "Nhap loai may bay: ";
-			string loai;
-			getline(cin, loai);
-			((Plane *)_pl[found])->SetLoaiMB(loai);
-			break;
-		}
-
-		case 3:
-		{
-			cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
-			string Code;
-			while (1)
+			case 0:
 			{
-				cout << "Nhap loai may: ";
-				getline(cin, Code);
-				if (Plane::CheckCode(Code))
-					break;
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				_pl[found]->Input();
+				break;
 			}
-			((Plane *)_pl[found])->SetCodeMB(Code);
+			case 1:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				cout << "Nhap ma hieu may bay: ";
+				string name;
+				getline(cin, name);
+				((Plane *)_pl[found])->SetMaHieu(name);
+				break;
+			}
+			case 2:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				cout << "Nhap loai may bay: ";
+				string loai;
+				getline(cin, loai);
+				((Plane *)_pl[found])->SetLoaiMB(loai);
+				break;
+			}
+
+			case 3:
+			{
+				cout << "\n\t===== Nhap thong tin can chinh sua =====" << endl;
+				string Code;
+				while (1)
+				{
+					cout << "Nhap loai may: ";
+					getline(cin, Code);
+					if (Plane::CheckCode(Code))
+						break;
+				}
+				((Plane *)_pl[found])->SetCodeMB(Code);
+				break;
+			}
+			}
 			break;
 		}
+			// default:
+			// 	cout << "Lua chon khong hop le!";
+			// 	break;
 		}
-		break;
-	}
 	}
 	OutputDataToFile(option);
 }
