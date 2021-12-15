@@ -145,7 +145,7 @@ void BuyTicket::Output()
 	cout << "|   " << setw(16) << left << _MaISFC
 		 << "|   " << setw(17) << _Ten
 		 << "|      " << setw(9) << _GioiTinh
-		 << "|     " << setw(9) << _ID
+		 << "|  " << setw(12) << _ID
 		 << "|     " << _MaKhachHang;
 }
 void BuyTicket::OutputMainInfo()

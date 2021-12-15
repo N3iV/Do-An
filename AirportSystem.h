@@ -17,8 +17,8 @@
 #define USER_DATA_PATH "./database/users.txt"
 #define PASSWORD_DATA_PATH "./database/passwords.txt"
 #define NOT_FOUND -1
-#define FLIGHT_CODE_9 "VJA"
-#define _FLIGHT_CODE_9 "VNA"
+#define FLIGHT_CODE_TN "TN"
+#define FLIGHT_CODE_QT "QT"
 using namespace std;
 
 // Helper Function

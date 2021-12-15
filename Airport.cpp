@@ -195,7 +195,7 @@ void Airport::Show(int option)
 	}
 }
 void Airport::ShowMainInfo(int option)
-{   
+{
 	int i;
 	LoadDataFromFile(option);
 	vector<AirportSystem *> tmp;
@@ -207,7 +207,7 @@ void Airport::ShowMainInfo(int option)
 
 		tmp = _fl;
 		int maxKhung = tmp.size();
-		vekhung(50, 2, maxKhung +1, 78);
+		vekhung(50, 2, maxKhung + 1, 78);
 		gotoxy(72, 1);
 		cout << "======= Danh sach chuyen bay ========";
 		gotoxy(53, 3);
@@ -222,7 +222,7 @@ void Airport::ShowMainInfo(int option)
 		tmp = _pl;
 		int maxKhung = tmp.size();
 
-		vekhung(50, 2, maxKhung +1, 30);
+		vekhung(50, 2, maxKhung + 1, 30);
 		gotoxy(53, 1);
 		cout << "=== danh sach may  bay ===";
 		gotoxy(53, 3);
@@ -352,7 +352,7 @@ void Airport::Delete(int option)
 	{
 	case 0:
 	{
-		found = Search(option, 0);
+		found = Search(option, 1);
 		if (found == NOT_FOUND)
 		{
 			TextColor(12);
@@ -554,8 +554,8 @@ void Airport::Edit(int option)
 	{
 		TextColor(SHOW_COLOR);
 		cout << setw(61) << right << "========== TIM THAY ==========" << endl;
-		cout << "  |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve" << endl;
-		cout << "=======================================================================================================" << endl;
+		cout << "   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
+		cout << "===================================================================================================================================================" << endl;
 		_fl[found]->Output();
 		TextColor(13);
 		cout << "\n0-Sua Tat Ca, 1-Ma chuyen bay, 2-Noi Den, 3-Noi Di, 4-ISFC, >> ";
@@ -626,8 +626,8 @@ void Airport::Edit(int option)
 	{
 		TextColor(SHOW_COLOR);
 		cout << setw(60) << right << "========== TIM THAY ==========" << endl;
-		cout << "  |     Ma hieu     |     Loai     |     Code     |     So day     |     So ghe     |     So ve" << endl;
-		cout << "===============================================================================================" << endl;
+		cout << "     Ma hieu     |     Loai     |     Code     " << endl;
+		cout << "===============================================" << endl;
 		_pl[found]->Output();
 		TextColor(3);
 		cout << "\n0-Sua Tat Ca, 1-Ma Hieu, 2-Loai, 3-Code MB, 4-So Day, 5-So Ghe >> ";
