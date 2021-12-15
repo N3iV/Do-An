@@ -141,20 +141,20 @@ void Display::ControlShowOption()
 				{
 				case 0:
 				{
-					cout << "                           ========= DANH SACH CHUYEN BAY =========                          " << endl;
+					cout << "                                                   ========= DANH SACH CHUYEN BAY =========                                                           " << endl;
 					TextColor(SHOW_COLOR);
 					cout << "STT |   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |     Trang thai      " << endl;
-					cout << "=============================================================================================================================================== ======" << endl;
+					cout << "=====================================================================================================================================================" << endl;
 					break;
 				}
 
 				case 1:
 				{
-					cout << "       ========== DANH SACH MAY BAY ==========                           " << endl;
+					cout << "     ========== DANH SACH MAY BAY ==========                           " << endl;
 
 					TextColor(SHOW_COLOR);
 					cout << "STT |     Ma hieu     |     Loai     |     Code     " << endl;
-					cout << "====================================================";
+					cout << "==================================================";
 					break;
 				}
 
