@@ -445,7 +445,7 @@ int Airport::Search(int option, int type)
 		{
 		case 0:
 		{
-			// search by title
+			// search =  ma chuyen bay
 			TextColor(13);
 			vekhung(0, 2, 1, 25);
 			gotoxy(2, 3);
@@ -479,7 +479,11 @@ int Airport::Search(int option, int type)
 					return i;
 			return NOT_FOUND;
 		}
+		default:
+			cout << "Khong hop le!";
+			break;
 		}
+		break;
 	}
 	case 1:
 	{
@@ -487,7 +491,7 @@ int Airport::Search(int option, int type)
 		{
 		case 0:
 		{
-			// search by name
+			// search = loai may bay
 			TextColor(13);
 			vekhung(0, 2, 1, 30);
 			gotoxy(2, 3);
@@ -502,7 +506,7 @@ int Airport::Search(int option, int type)
 		}
 		case 1:
 		{
-			// search by ID
+			// search = ma hieu
 			TextColor(13);
 			vekhung(0, 2, 1, 21);
 			gotoxy(2, 3);
@@ -516,26 +520,28 @@ int Airport::Search(int option, int type)
 			return NOT_FOUND;
 		}
 		default:
-			cout << "Vui long nhap lai";
+			cout << "Lua chon khong hop le!";
 			break;
+			return NOT_FOUND;
 		}
+		break;
 	}
-	default:
-	{
-		TextColor(13);
-		vekhung(0, 2, 1, 42);
-		gotoxy(2, 3);
-		cout << "Nhap CMND: " << setfill(' ');
-		string cmnd;
-		getline(cin, cmnd);
-		for (int i = 0; i < _bt.size(); ++i)
-		{
-			string r_cmnd = ((BuyTicket *)_bt[i])->GetID();
-			if (ToLower(r_cmnd) == ToLower(cmnd))
-				return i;
-		}
-		return NOT_FOUND;
-	}
+		// default:
+		// {
+		// 	TextColor(13);
+		// 	vekhung(0, 2, 1, 42);
+		// 	gotoxy(2, 3);
+		// 	cout << "Nhap CMND: " << setfill(' ');
+		// 	string cmnd;
+		// 	getline(cin, cmnd);
+		// 	for (int i = 0; i < _bt.size(); ++i)
+		// 	{
+		// 		string r_cmnd = ((BuyTicket *)_bt[i])->GetID();
+		// 		if (ToLower(r_cmnd) == ToLower(cmnd))
+		// 			return i;
+		// 	}
+		// 	return NOT_FOUND;
+		// }
 	}
 }
 void Airport::Edit(int option)
@@ -680,6 +686,9 @@ void Airport::Edit(int option)
 		}
 		break;
 	}
+		// default:
+		// 	cout << "Lua chon khong hop le!";
+		// 	break;
 	}
 	OutputDataToFile(option);
 }
