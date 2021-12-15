@@ -395,10 +395,10 @@ void Display::ControlSearchOption()
 					if (found != NOT_FOUND)
 					{
 						TextColor(SHOW_COLOR);
-						gotoxy(33, 5);
+						gotoxy(50, 5);
 						cout << "========== TIM THAY ==========" << endl;
-						cout << "   Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
-						cout << "===================================================================================================================================================";
+						cout << "    Ma hieu  |   Ma chuyen bay   |     Noi den     |     Noi di     |     IFSC     |     Gia ve ($)   |      Thoi gian      |       Trang thai      " << endl;
+						cout << "==================================================================================================================================================="<<endl;
 						aport.GetFlight(found)->Output();
 					}
 					else
