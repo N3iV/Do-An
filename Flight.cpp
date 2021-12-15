@@ -181,12 +181,8 @@ bool Flight::CheckFC(const string &ISFC)
 	check = check + ISFC[0] + ISFC[1];
 	if (check != FLIGHT_CODE_TN && check != FLIGHT_CODE_QT)
 	{
-<<<<<<< HEAD
 		TextColor(12);
-		cerr << "\nMa ISFC-9 bat dau bang VJA hoac VNA !";
-=======
 		cerr << "\nMa ISFC-9 bat dau bang TN hoac QT !";
->>>>>>> a6de539bd3587b0c19498196a483b5f60e71cb99
 		return false;
 	}
 	return true;
