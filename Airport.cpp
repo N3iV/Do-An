@@ -378,7 +378,7 @@ void Airport::Delete(int option)
 	break;
 	case 1:
 	{
-		found = Search(option, 1);
+		found = Search(option, 2);
 		if (found == NOT_FOUND)
 		{
 			TextColor(12);
@@ -516,6 +516,21 @@ int Airport::Search(int option, int type)
 			getline(cin, maHieu);
 			for (int i = 0; i < _pl.size(); ++i)
 				if (ToLower(((Plane *)_pl[i])->GetMaHieu()) == ToLower(maHieu))
+					return i;
+			return NOT_FOUND;
+		}
+		case 2:
+		{
+			// search = ma code
+			TextColor(13);
+			vekhung(0, 2, 1, 21);
+			gotoxy(2, 3);
+			cout << "Nhap code: " << setfill(' ');
+			string code;
+			fflush(stdin);
+			getline(cin, code);
+			for (int i = 0; i < _pl.size(); ++i)
+				if (ToLower(((Plane *)_pl[i])->GetCodeMB()) == ToLower(code))
 					return i;
 			return NOT_FOUND;
 		}
