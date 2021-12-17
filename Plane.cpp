@@ -136,7 +136,9 @@ void Plane::OutputMainInfo()
 {
 	cout <<setw(10)<<left<<setfill(' ')<< _maHieu
 		 << "|   "
-		 << setw(10) << _loaiMB;
+		 << setw(15) << _loaiMB
+		 << "|   "
+		 << _code;
 	TextColor(7);
 }
 void Plane::InputFile(ifstream &input)

@@ -222,11 +222,11 @@ void Airport::ShowMainInfo(int option)
 		tmp = _pl;
 		int maxKhung = tmp.size();
 
-		vekhung(50, 2, maxKhung + 1, 30);
+		vekhung(50, 2, maxKhung + 1, 43);
 		gotoxy(53, 1);
-		cout << "=== danh sach may  bay ===";
+		cout << "========== danh sach may bay ==========";
 		gotoxy(53, 3);
-		cout << "Ma hieu   |   loai may bay";
+		cout << "Ma hieu   |   loai may bay   |   code";
 		TextColor(7);
 
 		break;
@@ -346,12 +346,23 @@ void Airport::Add(int option)
 }
 void Airport::Delete(int option)
 {
+	LoadDataFromFile(option);
+
+	ofstream output;
 	int found;
 	char confirm[4];
 	switch (option)
 	{
 	case 0:
 	{
+		output.open(TICKET_DATA_PATH, ios::app);
+		if (output.fail())
+			throw "Loi doc file";
+		BuyTicket *btt = new BuyTicket;
+		if (btt == NULL)
+			throw "Khong the cap phat bo nho";
+		fflush(stdin);
+		ShowMainInfo(0);
 		found = Search(option, 1);
 		if (found == NOT_FOUND)
 		{
@@ -378,7 +389,14 @@ void Airport::Delete(int option)
 	break;
 	case 1:
 	{
-		found = Search(option, 1);
+		output.open(FLIGHT_DATA_PATH, ios::app);
+		if (output.fail())
+		throw "Loi doc file";
+		AirportSystem *flightt = new Flight;
+		if (flightt == NULL)
+		throw "Khong the cap phat bo nho";
+		ShowMainInfo(1);
+		found = Search(option, 2);
 		if (found == NOT_FOUND)
 		{
 			TextColor(12);
@@ -516,6 +534,21 @@ int Airport::Search(int option, int type)
 			getline(cin, maHieu);
 			for (int i = 0; i < _pl.size(); ++i)
 				if (ToLower(((Plane *)_pl[i])->GetMaHieu()) == ToLower(maHieu))
+					return i;
+			return NOT_FOUND;
+		}
+		case 2:
+		{
+			// search = ma code
+			TextColor(13);
+			vekhung(0, 2, 1, 21);
+			gotoxy(2, 3);
+			cout << "Nhap code: " << setfill(' ');
+			string code;
+			fflush(stdin);
+			getline(cin, code);
+			for (int i = 0; i < _pl.size(); ++i)
+				if (ToLower(((Plane *)_pl[i])->GetCodeMB()) == ToLower(code))
 					return i;
 			return NOT_FOUND;
 		}
